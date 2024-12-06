@@ -1,21 +1,17 @@
-nav {
+.navbar {
+    background-color:#9a1a1a;
+}
+
+.navbar a:hover {
+    color: #ffffff;
+    text-decoration: none;  
+}
+
+.navbar .navbar-brand {
     font-family: Impact;
-    font-size: 48px;
-    color: white;
-    background-color:rgb(154, 26, 26)
-}
-
-nav a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
-}
-
-nav .btn {
-    background-color: rgb(154, 26, 26);
-    color: white;
-    padding-left: 100px;
     font-size: 48px;
-    border: none;
 }
 
 nav .flag {
