@@ -2,7 +2,7 @@
     background-color:#9a1a1a;
 }
 
-.navbar a:hover {
+.navbar span:hover {
     color: #ffffff;
     text-decoration: none;  
 }
@@ -12,10 +12,34 @@
     color: #ffffff;
     text-decoration: none;
     font-size: 48px;
+    cursor: default;
+    user-select: none;
 }
 
-nav .flag {
-    width: 80px;
-    height: 80px;
+.navbar-toggler {
+    border-color: #ffffff;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem #ffffff80;
+}
+
+.navbar-nav a {
+    color: #ffffff;
+    font-size: 32px;
+    font-family: Impact;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.navbar-nav a:hover {
+    color: #9a1a1a;
+    text-decoration: none;
+}
+
+.navbar .flag {
+    width: 85px;
+    height: 85px;
     padding-left: 10px;
+    user-select: none;
 }
