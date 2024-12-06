@@ -17,3 +17,9 @@ nav .btn {
     font-size: 48px;
     border: none;
 }
+
+nav .flag {
+    width: 80px;
+    height: 80px;
+    padding-left: 10px;
+}
