@@ -24,16 +24,23 @@
     box-shadow: 0 0 0 0.25rem #ffffff80;
 }
 
-.navbar-nav a {
+.navbar-nav .btn {
     color: #ffffff;
     font-size: 32px;
     font-family: Impact;
     text-decoration: none;
     margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .navbar-nav a:hover {
     color: #9a1a1a;
+    text-decoration: none;
+}
+
+.navbar-nav .btn:active {
+    color: #ffffff !important;
     text-decoration: none;
 }
 
