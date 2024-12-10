@@ -50,3 +50,7 @@
     padding-left: 10px;
     user-select: none;
 }
+
+.table {
+    font-size: 24px;
+}
