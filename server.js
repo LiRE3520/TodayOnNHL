@@ -9,11 +9,11 @@ let matches = require('./data/matches.json')
 app.use(express.json())
 app.use(express.static("client"))
 
-app.get("/api/teams", function(req,resp){
+app.get("/api/standings", function(req,resp){
     resp.json(teams)
 })
 
-app.get("/api/matches", function(req,resp){
+app.get("/api/schedule", function(req,resp){
     resp.json(matches)
 })
 

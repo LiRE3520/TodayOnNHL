@@ -1,21 +1,21 @@
-document.getElementById("showTeams").addEventListener("click", function() {
-    document.getElementById("teams").style.display = "block";
-    document.getElementById("matches").style.display = "none";
-    getTeams();
+document.getElementById("showStandings").addEventListener("click", function() {
+    document.getElementById("standings").style.display = "block";
+    document.getElementById("schedule").style.display = "none";
+    getStandings();
 });
 
-document.getElementById("showMatches").addEventListener("click", function() {
-    document.getElementById("teams").style.display = "none";
-    document.getElementById("matches").style.display = "block";
+document.getElementById("showSchedule").addEventListener("click", function() {
+    document.getElementById("standings").style.display = "none";
+    document.getElementById("schedule").style.display = "block";
     getMatches();
 });
 
-function getTeams() {
-    fetch("/api/teams")
+function getStandings() {
+    fetch("/api/standings")
         .then(resp => resp.json())
         .then(teams => {
             teams.sort((a, b) => a.position - b.position);
-            const body = document.getElementById("teamsTableBody")
+            const body = document.getElementById("standingsBody")
             body.innerHTML = "";
             for (let team of teams) {
                 const row = document.createElement("tr");
@@ -30,11 +30,11 @@ function getTeams() {
 }
 
 function getMatches() {
-    fetch("/api/matches")
+    fetch("/api/schedule")
         .then(resp => resp.json())
         .then(matches => {
             matches.sort((a, b) => a.order - b.order);
-            const section = document.getElementById("matches")
+            const section = document.getElementById("schedule")
             section.innerHTML = "";
             for (let match of matches) {
                 const card = document.createElement("div");
