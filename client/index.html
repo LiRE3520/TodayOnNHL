@@ -22,8 +22,8 @@
         <div class="container-fluid">
             <div class="d-flex">
                 <span class="navbar-brand">ThisWeekOnNHL</span>
-                <img src = "assets/USA.svg" alt="USA" class="flag">
-                <img src = "assets/Canada.svg" alt="Canada" class="flag">
+                <img src = "assets/flags/USA.svg" alt="USA" class="flag">
+                <img src = "assets/flags/Canada.svg" alt="Canada" class="flag">
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDrop">
@@ -32,8 +32,8 @@
             
             <div class="collapse navbar-collapse" id="navbarDrop">
                 <ul class="navbar-nav ms-auto">
-                    <a href="#teams" class="btn btn-outline-light" id="showTeams">Teams</a>
-                    <a href="#matches" class="btn btn-outline-light" id="showMatches">Matches</a>
+                    <a class="btn btn-outline-light" id="showTeams">Teams</a>
+                    <a class="btn btn-outline-light" id="showMatches">Matches</a>
                 </ul>
             </div>
         </div>
@@ -50,21 +50,8 @@
                     <th scope="col">Points</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td><img src="assets/WSH.png" height=35 width=35></img></td>
-                    <td>Washington Capitals</td>
-                    <td>27</td>
-                    <td>40</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td><img src="assets/MIN.png" height=35 width=35></img></td>
-                    <td>Minnesota Wild</td>
-                    <td>27</td>
-                    <td>40</td>
-                </tr>
+            <tbody id="teamsTableBody">
+                
             </tbody>
           </table>
     </section>
