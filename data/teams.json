@@ -1,258 +1,258 @@
 [
-    {
-        "id": "ANA",
-        "position": 27,
-        "logo": "assets/logos/ANA.svg",
-        "name": "Anaheim Ducks",
-        "gamesPlayed": 35,
-        "points": 32
-    },
-    {
-        "id": "BOS",
-        "position": 12,
-        "logo": "assets/logos/BOS.svg",
-        "name": "Boston Bruins",
-        "gamesPlayed": 38,
-        "points": 44
-    },
-    {
-        "id": "BUF",
-        "position": 29,
-        "logo": "assets/logos/BUF.svg",
-        "name": "Buffalo Sabres",
-        "gamesPlayed": 37,
-        "points": 32
-    },
-    {
-        "id": "CGY",
-        "position": 16,
-        "logo": "assets/logos/CGY.svg",
-        "name": "Calgary Flames",
-        "gamesPlayed": 36,
-        "points": 41
-    },
-    {
-        "id": "CAR",
-        "position": 9,
-        "logo": "assets/logos/CAR.svg",
-        "name": "Carolina Hurricanes",
-        "gamesPlayed": 36,
-        "points": 45
-    },
-    {
-        "id": "CHI",
-        "position": 32,
-        "logo": "assets/logos/CHI.svg",
-        "name": "Chicago Blackhawks",
-        "gamesPlayed": 37,
-        "points": 26
-    },
-    {
-        "id": "COL",
-        "position": 11,
-        "logo": "assets/logos/COL.svg",
-        "name": "Colorado Avalanche",
-        "gamesPlayed": 37,
-        "points": 44
-    },
-    {
-        "id": "CBJ",
-        "position": 21,
-        "logo": "assets/logos/CBJ.svg",
-        "name": "Columbus Blue Jackets",
-        "gamesPlayed": 37,
-        "points": 36
-    },
-    {
-        "id": "DAL",
-        "position": 13,
-        "logo": "assets/logos/DAL.svg",
-        "name": "Dallas Stars",
-        "gamesPlayed": 35,
-        "points": 43
-    },
-    {
-        "id": "DET",
-        "position": 28,
-        "logo": "assets/logos/DET.svg",
-        "name": "Detroit Red Wings",
-        "gamesPlayed": 36,
-        "points": 32
-    },
-    {
-        "id": "EDM",
-        "position": 10,
-        "logo": "assets/logos/EDM.svg",
-        "name": "Edmonton Oilers",
-        "gamesPlayed": 36,
-        "points": 45
-    },
-    {
-        "id": "FLA",
-        "position": 6,
-        "logo": "assets/logos/FLA.svg",
-        "name": "Florida Panthers",
-        "gamesPlayed": 38,
-        "points": 48
-    },
-    {
-        "id": "LAK",
-        "position": 7,
-        "logo": "assets/logos/LAK.svg",
-        "name": "Los Angeles Kings",
-        "gamesPlayed": 36,
-        "points": 47
-    },
-    {
-        "id": "MIN",
-        "position": 5,
-        "logo": "assets/logos/MIN.svg",
-        "name": "Minnesota Wild",
-        "gamesPlayed": 37,
-        "points": 48
-    },
-    {
-        "id": "MTL",
-        "position": 24,
-        "logo": "assets/logos/MTL.svg",
-        "name": "Montreal Canadiens",
-        "gamesPlayed": 36,
-        "points": 35
-    },
-    {
-        "id": "NSH",
-        "position": 30,
-        "logo": "assets/logos/NSH.svg",
-        "name": "Nashville Predators",
-        "gamesPlayed": 37,
-        "points": 29
-    },
-    {
-        "id": "NJD",
-        "position": 3,
-        "logo": "assets/logos/NJD.svg",
-        "name": "New Jersey Devils",
-        "gamesPlayed": 39,
-        "points": 51
-    },
-    {
-        "id": "NYI",
-        "position": 25,
-        "logo": "assets/logos/NYI.svg",
-        "name": "New York Islanders",
-        "gamesPlayed": 37,
-        "points": 35
-    },
-    {
-        "id": "NYR",
-        "position": 26,
-        "logo": "assets/logos/NYR.svg",
-        "name": "New York Rangers",
-        "gamesPlayed": 36,
-        "points": 33
-    },
-    {
-        "id": "OTT",
-        "position": 17,
-        "logo": "assets/logos/OTT.svg",
-        "name": "Ottawa Senators",
-        "gamesPlayed": 36,
-        "points": 40
-    },
-    {
-        "id": "PHI",
-        "position": 22,
-        "logo": "assets/logos/PHI.svg",
-        "name": "Philadelphia Flyers",
-        "gamesPlayed": 37,
-        "points": 36
-    },
-    {
-        "id": "PIT",
-        "position": 18,
-        "logo": "assets/logos/PIT.svg",
-        "name": "Pittsburgh Penguins",
-        "gamesPlayed": 38,
-        "points": 39
-    },
-    {
-        "id": "SJS",
-        "position": 31,
-        "logo": "assets/logos/SJS.svg",
-        "name": "San Jose Sharks",
-        "gamesPlayed": 39,
-        "points": 28
-    },
-    {
-        "id": "SEA",
-        "position": 23,
-        "logo": "assets/logos/SEA.svg",
-        "name": "Seattle Kraken",
-        "gamesPlayed": 38,
-        "points": 36
-    },
-    {
-        "id": "STL",
-        "position": 20,
-        "logo": "assets/logos/STL.svg",
-        "name": "St. Louis Blues",
-        "gamesPlayed": 38,
-        "points": 38
-    },
-    {
-        "id": "TBL",
-        "position": 14,
-        "logo": "assets/logos/TBL.svg",
-        "name": "Tampa Bay Lightning",
-        "gamesPlayed": 34,
-        "points": 42
-    },
-    {
-        "id": "TOR",
-        "position": 8,
-        "logo": "assets/logos/TOR.svg",
-        "name": "Toronto Maple Leafs",
-        "gamesPlayed": 37,
-        "points": 46
-    },
-    {
-        "id": "VAN",
-        "position": 15,
-        "logo": "assets/logos/VAN.svg",
-        "name": "Vancouver Canucks",
-        "gamesPlayed": 35,
-        "points": 42
-    },
-    {
-        "id": "UTA",
-        "position": 19,
-        "logo": "assets/logos/UTA.svg",
-        "name": "Utah Hockey Club",
-        "gamesPlayed": 36,
-        "points": 38
-    },
-    {
-        "id": "VGK",
-        "position": 2,
-        "logo": "assets/logos/VGK.svg",
-        "name": "Vegas Golden Knights",
-        "gamesPlayed": 36,
-        "points": 53
-    },
-    {
-        "id": "WSH",
-        "position": 4,
-        "logo": "assets/logos/WSH.svg",
-        "name": "Washington Capitals",
-        "gamesPlayed": 36,
-        "points": 50
-    },
-    {
-        "id": "WPG",
-        "position": 1,
-        "logo": "assets/logos/WPG.svg",
-        "name": "Winnipeg Jets",
-        "gamesPlayed": 38,
-        "points": 55
-    }
+  {
+    "id": "ANA",
+    "position": 27,
+    "logo": "assets/logos/Anaheim Ducks.svg",
+    "name": "Anaheim Ducks",
+    "gamesPlayed": 35,
+    "points": 32
+  },
+  {
+    "id": "BOS",
+    "position": 12,
+    "logo": "assets/logos/Boston Bruins.svg",
+    "name": "Boston Bruins",
+    "gamesPlayed": 38,
+    "points": 44
+  },
+  {
+    "id": "BUF",
+    "position": 29,
+    "logo": "assets/logos/Buffalo Sabres.svg",
+    "name": "Buffalo Sabres",
+    "gamesPlayed": 37,
+    "points": 32
+  },
+  {
+    "id": "CGY",
+    "position": 16,
+    "logo": "assets/logos/Calgary Flames.svg",
+    "name": "Calgary Flames",
+    "gamesPlayed": 36,
+    "points": 41
+  },
+  {
+    "id": "CAR",
+    "position": 9,
+    "logo": "assets/logos/Carolina Hurricanes.svg",
+    "name": "Carolina Hurricanes",
+    "gamesPlayed": 36,
+    "points": 45
+  },
+  {
+    "id": "CHI",
+    "position": 32,
+    "logo": "assets/logos/Chicago Blackhawks.svg",
+    "name": "Chicago Blackhawks",
+    "gamesPlayed": 37,
+    "points": 26
+  },
+  {
+    "id": "COL",
+    "position": 11,
+    "logo": "assets/logos/Colorado Avalanche.svg",
+    "name": "Colorado Avalanche",
+    "gamesPlayed": 37,
+    "points": 44
+  },
+  {
+    "id": "CBJ",
+    "position": 21,
+    "logo": "assets/logos/Columbus Blue Jackets.svg",
+    "name": "Columbus Blue Jackets",
+    "gamesPlayed": 37,
+    "points": 36
+  },
+  {
+    "id": "DAL",
+    "position": 13,
+    "logo": "assets/logos/Dallas Stars.svg",
+    "name": "Dallas Stars",
+    "gamesPlayed": 35,
+    "points": 43
+  },
+  {
+    "id": "DET",
+    "position": 28,
+    "logo": "assets/logos/Detroit Red Wings.svg",
+    "name": "Detroit Red Wings",
+    "gamesPlayed": 36,
+    "points": 32
+  },
+  {
+    "id": "EDM",
+    "position": 10,
+    "logo": "assets/logos/Edmonton Oilers.svg",
+    "name": "Edmonton Oilers",
+    "gamesPlayed": 36,
+    "points": 45
+  },
+  {
+    "id": "FLA",
+    "position": 6,
+    "logo": "assets/logos/Florida Panthers.svg",
+    "name": "Florida Panthers",
+    "gamesPlayed": 38,
+    "points": 48
+  },
+  {
+    "id": "LAK",
+    "position": 7,
+    "logo": "assets/logos/Los Angeles Kings.svg",
+    "name": "Los Angeles Kings",
+    "gamesPlayed": 36,
+    "points": 47
+  },
+  {
+    "id": "MIN",
+    "position": 5,
+    "logo": "assets/logos/Minnesota Wild.svg",
+    "name": "Minnesota Wild",
+    "gamesPlayed": 37,
+    "points": 48
+  },
+  {
+    "id": "MTL",
+    "position": 24,
+    "logo": "assets/logos/Montreal Canadiens.svg",
+    "name": "Montreal Canadiens",
+    "gamesPlayed": 36,
+    "points": 35
+  },
+  {
+    "id": "NSH",
+    "position": 30,
+    "logo": "assets/logos/Nashville Predators.svg",
+    "name": "Nashville Predators",
+    "gamesPlayed": 37,
+    "points": 29
+  },
+  {
+    "id": "NJD",
+    "position": 3,
+    "logo": "assets/logos/New Jersey Devils.svg",
+    "name": "New Jersey Devils",
+    "gamesPlayed": 39,
+    "points": 51
+  },
+  {
+    "id": "NYI",
+    "position": 25,
+    "logo": "assets/logos/New York Islanders.svg",
+    "name": "New York Islanders",
+    "gamesPlayed": 37,
+    "points": 35
+  },
+  {
+    "id": "NYR",
+    "position": 26,
+    "logo": "assets/logos/New York Rangers.svg",
+    "name": "New York Rangers",
+    "gamesPlayed": 36,
+    "points": 33
+  },
+  {
+    "id": "OTT",
+    "position": 17,
+    "logo": "assets/logos/Ottawa Senators.svg",
+    "name": "Ottawa Senators",
+    "gamesPlayed": 36,
+    "points": 40
+  },
+  {
+    "id": "PHI",
+    "position": 22,
+    "logo": "assets/logos/Philadelphia Flyers.svg",
+    "name": "Philadelphia Flyers",
+    "gamesPlayed": 37,
+    "points": 36
+  },
+  {
+    "id": "PIT",
+    "position": 18,
+    "logo": "assets/logos/Pittsburgh Penguins.svg",
+    "name": "Pittsburgh Penguins",
+    "gamesPlayed": 38,
+    "points": 39
+  },
+  {
+    "id": "SJS",
+    "position": 31,
+    "logo": "assets/logos/San Jose Sharks.svg",
+    "name": "San Jose Sharks",
+    "gamesPlayed": 39,
+    "points": 28
+  },
+  {
+    "id": "SEA",
+    "position": 23,
+    "logo": "assets/logos/Seattle Kraken.svg",
+    "name": "Seattle Kraken",
+    "gamesPlayed": 38,
+    "points": 36
+  },
+  {
+    "id": "STL",
+    "position": 20,
+    "logo": "assets/logos/St. Louis Blues.svg",
+    "name": "St. Louis Blues",
+    "gamesPlayed": 38,
+    "points": 38
+  },
+  {
+    "id": "TBL",
+    "position": 14,
+    "logo": "assets/logos/Tampa Bay Lightning.svg",
+    "name": "Tampa Bay Lightning",
+    "gamesPlayed": 34,
+    "points": 42
+  },
+  {
+    "id": "TOR",
+    "position": 8,
+    "logo": "assets/logos/Toronto Maple Leafs.svg",
+    "name": "Toronto Maple Leafs",
+    "gamesPlayed": 37,
+    "points": 46
+  },
+  {
+    "id": "VAN",
+    "position": 15,
+    "logo": "assets/logos/Vancouver Canucks.svg",
+    "name": "Vancouver Canucks",
+    "gamesPlayed": 35,
+    "points": 42
+  },
+  {
+    "id": "UTA",
+    "position": 19,
+    "logo": "assets/logos/Utah Hockey Club.svg",
+    "name": "Utah Hockey Club",
+    "gamesPlayed": 36,
+    "points": 38
+  },
+  {
+    "id": "VGK",
+    "position": 2,
+    "logo": "assets/logos/Vegas Golden Knights.svg",
+    "name": "Vegas Golden Knights",
+    "gamesPlayed": 36,
+    "points": 53
+  },
+  {
+    "id": "WSH",
+    "position": 4,
+    "logo": "assets/logos/Washington Capitals.svg",
+    "name": "Washington Capitals",
+    "gamesPlayed": 36,
+    "points": 50
+  },
+  {
+    "id": "WPG",
+    "position": 1,
+    "logo": "assets/logos/Winnipeg Jets.svg",
+    "name": "Winnipeg Jets",
+    "gamesPlayed": 38,
+    "points": 55
+  }
 ]

@@ -1,0 +1,37 @@
+[
+    {
+        "order": 1,
+        "team1": "Boston Bruins",
+        "team2": "Washington Capitals",
+        "date": "2024-12-31",
+        "time": "17:30 GMT"
+    },
+    {
+        "order": 2,
+        "team1": "New York Islanders",
+        "team2": "Toronto Maple Leafs",
+        "date": "2024-12-31",
+        "time": "18:00 GMT"
+    },
+    {
+        "order": 3,
+        "team1": "Montreal Canadiens",
+        "team2": "Vegas Golden Knights",
+        "date": "2024-12-31",
+        "time": "20:00 GMT"
+    },
+    {
+        "order": 4,
+        "team1": "St. Louis Blues",
+        "team2": "Chicago Blackhawks",
+        "date": "2024-12-31",
+        "time": "22:00 GMT"
+    },
+    {
+        "order": 5,
+        "team1": "Pittsburgh Penguins",
+        "team2": "Detroit Red Wings",
+        "date": "2025-01-01",
+        "time": "01:00 GMT"
+    }
+]
