@@ -64,16 +64,56 @@ function getSchedule() {
                 card.innerHTML = `
                 <div class="card-body">
                     <div class="d-flex justify-content-around align-items-center">
-                        <img src="assets/logos/${match.team1}.svg" class="img-fluid" style="max-width: 100px;">
-                        <h5 class="card-title">${match.team1} vs. ${match.team2}</h5>
-                        <img src="assets/logos/${match.team2}.svg" class="img-fluid" style="max-width: 100px;">
+                        <img src="assets/logos/${match.team1}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.team1}', ${match.id})">
+                        <h5 class="card-title">${match.team1} @ ${match.team2}</h5>
+                        <img src="assets/logos/${match.team2}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.team2}', ${match.id})">
                     </div>
                     <p class="card-text">${match.date} | ${match.time}</p>
                 </div>`
                 section.appendChild(card);
+                const totalVotes = match.team1Votes + match.team2Votes;
+                const team1Percent = Math.round((match.team1Votes / totalVotes) * 100);
+                const team2Percent = Math.round((match.team2Votes / totalVotes) * 100);
+                const bar = document.createElement("div");
+                bar.className = "progress";
+                bar.style.height = "30px";
+                bar.innerHTML = `
+                <div id="team1Bar${match.id}" class="progress-bar progress-bar-left" role="progressbar" style="width: ${team1Percent}%" 
+                 aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                ${match.team1Votes} votes
+                </div>
+                <div id="team2Bar${match.id}" class="progress-bar progress-bar-right" role="progressbar" style="width: ${team2Percent}%" 
+                 aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                ${match.team2Votes} votes
+                </div>`;
+                section.appendChild(bar);
             }
         });
 }
+
+function vote(team, id) {
+    fetch("/api/vote", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: id,
+            team: team
+        })
+    })
+        .then(resp => resp.json())
+        .then(match => {
+            const totalVotes = match.team1Votes + match.team2Votes;
+            const team1Percent = Math.round((match.team1Votes / totalVotes) * 100);
+            const team2Percent = Math.round((match.team2Votes / totalVotes) * 100);
+            document.getElementById(`team1Bar${match.id}`).style.width = `${team1Percent}%`;
+            document.getElementById(`team2Bar${match.id}`).style.width = `${team2Percent}%`;
+            document.getElementById(`team1Bar${match.id}`).innerHTML = `${match.team1Votes} votes`;
+            document.getElementById(`team2Bar${match.id}`).innerHTML = `${match.team2Votes} votes`;
+        })
+}
+
 
 document.addEventListener("DOMContentLoaded", viewHome);
 

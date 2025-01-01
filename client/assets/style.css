@@ -59,3 +59,30 @@
     text-align: left;
     padding-top: 1rem;
 }
+
+.progress-bar-left {
+    background-color: #9a1a1a;
+}
+
+.progress-bar-right {
+    background-color: #1f1fa2;
+}
+
+.btn {
+    border: none;
+}
+
+.btn-vote {
+    background-color: white;
+    color: black;
+    font-size: 16px;
+}
+
+.btn-vote:hover {
+    background-color: #9a1a1a;
+    color: white;
+}
+
+.img-vote {
+    cursor: pointer;
+}
