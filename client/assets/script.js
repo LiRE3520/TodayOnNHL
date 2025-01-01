@@ -9,13 +9,27 @@ document.getElementById("showSchedule").addEventListener("click", function() {
     document.getElementById("standings").style.display = "none";
     document.getElementById("schedule").style.display = "block";
     document.getElementById("home").style.display = "none";
-    getMatches();
+    getSchedule();
 });
 
 document.getElementById("title").addEventListener("click", function() {
     document.getElementById("standings").style.display = "none";
     document.getElementById("schedule").style.display = "none";
     document.getElementById("home").style.display = "block";
+});
+
+document.getElementById("seeTheStandings").addEventListener("click", function() {
+    document.getElementById("standings").style.display = "block";
+    document.getElementById("home").style.display = "none";
+    document.getElementById("schedule").style.display = "none";
+    getStandings();
+});
+
+document.getElementById("seeTheSchedule").addEventListener("click", function() {
+    document.getElementById("standings").style.display = "none";
+    document.getElementById("home").style.display = "none";
+    document.getElementById("schedule").style.display = "block";
+    getSchedule();
 });
 
 function getStandings() {
@@ -37,7 +51,7 @@ function getStandings() {
         });
 }
 
-function getMatches() {
+function getSchedule() {
     fetch("/api/schedule")
         .then(resp => resp.json())
         .then(matches => {
