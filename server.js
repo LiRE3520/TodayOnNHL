@@ -9,8 +9,9 @@ app.use(express.static("client"))
 app.get("/api/home", function(req,resp){
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
     let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
+    matches.sort((a, b) => a.id - b.id);
     let topTeam = teams.find(team => team.position === 1);
-    let nextMatch = matches.find(match => match.id === 1);
+    let nextMatch = matches[0];
     resp.json({topTeam, nextMatch})
 })
 

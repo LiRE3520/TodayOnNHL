@@ -6,7 +6,7 @@
     "date": "2024-12-31",
     "time": "17:30 GMT",
     "team1Votes": 6,
-    "team2Votes": 4
+    "team2Votes": 5
   },
   {
     "id": 1189,
@@ -14,8 +14,8 @@
     "team2": "Toronto Maple Leafs",
     "date": "2024-12-31",
     "time": "18:00 GMT",
-    "team1Votes": 7,
-    "team2Votes": 3
+    "team1Votes": 16,
+    "team2Votes": 9
   },
   {
     "id": 1190,
@@ -23,8 +23,8 @@
     "team2": "Vegas Golden Knights",
     "date": "2024-12-31",
     "time": "20:00 GMT",
-    "team1Votes": 1,
-    "team2Votes": 1
+    "team1Votes": 5,
+    "team2Votes": 16
   },
   {
     "id": 1191,
@@ -32,8 +32,8 @@
     "team2": "Chicago Blackhawks",
     "date": "2024-12-31",
     "time": "22:00 GMT",
-    "team1Votes": 1,
-    "team2Votes": 1
+    "team1Votes": 15,
+    "team2Votes": 5
   },
   {
     "id": 1192,
