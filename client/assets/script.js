@@ -1,5 +1,6 @@
 document.getElementById("showStandings").addEventListener("click", function() {
     document.getElementById("standings").style.display = "block";
+    document.getElementById("home").style.display = "none";
     document.getElementById("schedule").style.display = "none";
     getStandings();
 });
@@ -7,7 +8,14 @@ document.getElementById("showStandings").addEventListener("click", function() {
 document.getElementById("showSchedule").addEventListener("click", function() {
     document.getElementById("standings").style.display = "none";
     document.getElementById("schedule").style.display = "block";
+    document.getElementById("home").style.display = "none";
     getMatches();
+});
+
+document.getElementById("title").addEventListener("click", function() {
+    document.getElementById("standings").style.display = "none";
+    document.getElementById("schedule").style.display = "none";
+    document.getElementById("home").style.display = "block";
 });
 
 function getStandings() {

@@ -12,7 +12,7 @@
     color: #ffffff;
     text-decoration: none;
     font-size: 48px;
-    cursor: default;
+    cursor: pointer;
     user-select: none;
 }
 
@@ -53,4 +53,12 @@
 
 .table {
     font-size: 24px;
+}
+
+#title:hover {
+    cursor: pointer;
+}
+
+.hover-pointer {
+   cursor: pointer;
 }
