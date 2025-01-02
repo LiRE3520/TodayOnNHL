@@ -57,7 +57,10 @@ function getSchedule() {
         .then(resp => resp.json())
         .then(matches => {
             const section = document.getElementById("schedule")
-            section.innerHTML = "";
+            section.innerHTML = `
+            <div class="d-flex justify-content-center my-3">
+            <h1 class="display-5 fw-bold">Which teams will you back?</h1>
+            </div>`;
             for (let match of matches) {
                 const card = document.createElement("div");
                 card.className = "card text-center mb-3";
@@ -71,18 +74,15 @@ function getSchedule() {
                     <p class="card-text">${match.date} | ${match.time}</p>
                 </div>`
                 section.appendChild(card);
-                const totalVotes = match.team1Votes + match.team2Votes;
-                const team1Percent = Math.round((match.team1Votes / totalVotes) * 100);
-                const team2Percent = Math.round((match.team2Votes / totalVotes) * 100);
                 const bar = document.createElement("div");
                 bar.className = "progress";
                 bar.style.height = "30px";
                 bar.innerHTML = `
-                <div id="team1Bar${match.id}" class="progress-bar progress-bar-left" role="progressbar" style="width: ${team1Percent}%" 
+                <div id="team1Bar${match.id}" class="progress-bar progress-bar-left" role="progressbar" style="width: ${match.team1Percent}%" 
                  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                 ${match.team1Votes} votes
                 </div>
-                <div id="team2Bar${match.id}" class="progress-bar progress-bar-right" role="progressbar" style="width: ${team2Percent}%" 
+                <div id="team2Bar${match.id}" class="progress-bar progress-bar-right" role="progressbar" style="width: ${match.team2Percent}%" 
                  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                 ${match.team2Votes} votes
                 </div>`;
@@ -104,11 +104,8 @@ function vote(team, id) {
     })
         .then(resp => resp.json())
         .then(match => {
-            const totalVotes = match.team1Votes + match.team2Votes;
-            const team1Percent = Math.round((match.team1Votes / totalVotes) * 100);
-            const team2Percent = Math.round((match.team2Votes / totalVotes) * 100);
-            document.getElementById(`team1Bar${match.id}`).style.width = `${team1Percent}%`;
-            document.getElementById(`team2Bar${match.id}`).style.width = `${team2Percent}%`;
+            document.getElementById(`team1Bar${match.id}`).style.width = `${match.team1Percent}%`;
+            document.getElementById(`team2Bar${match.id}`).style.width = `${match.team2Percent}%`;
             document.getElementById(`team1Bar${match.id}`).innerHTML = `${match.team1Votes} votes`;
             document.getElementById(`team2Bar${match.id}`).innerHTML = `${match.team2Votes} votes`;
         })

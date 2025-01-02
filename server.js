@@ -35,6 +35,8 @@ app.post("/api/vote", function(req,resp){
     } else {
         match.team2Votes++;
     }
+    match.team1Percent = Math.round(match.team1Votes / (match.team1Votes + match.team2Votes) * 100)
+    match.team2Percent = Math.round(match.team2Votes / (match.team1Votes + match.team2Votes) * 100)
     fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
     resp.json(match)
 })
