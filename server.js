@@ -12,19 +12,19 @@ app.get("/api/home", function(req,resp){
     matches.sort((a, b) => a.id - b.id);
     let topTeam = teams.find(team => team.position === 1);
     let nextMatch = matches[0];
-    resp.json({topTeam, nextMatch})
+    resp.send({topTeam, nextMatch})
 })
 
 app.get("/api/standings", function(req,resp){
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
     teams.sort((a, b) => a.position - b.position);
-    resp.json(teams)
+    resp.send(teams)
 })
 
 app.get("/api/schedule", function(req,resp){
     let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
     matches.sort((a, b) => a.id - b.id);
-    resp.json(matches)
+    resp.send(matches)
 })
 
 app.post("/api/vote", function(req,resp){
@@ -40,7 +40,7 @@ app.post("/api/vote", function(req,resp){
     match.awayOdds = 100 / match.awayPercent;
     match.homeOdds = 100 / match.homePercent;
     fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
-    resp.json(match)
+    resp.send(match)
 })
 
 console.log("Server running at: http://localhost:8090")

@@ -1,3 +1,16 @@
+const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
+
+if (toastTrigger) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+  toastTrigger.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}
+
+
+
+
 function viewStandings() {
     document.getElementById("standings").style.display = "block";
     document.getElementById("home").style.display = "none";
@@ -91,7 +104,7 @@ function getSchedule() {
                 odds.className = "d-flex justify-content-evenly my-3";
                 odds.innerHTML = `
                 <div id="awayOdds${match.id}" class="odds-display my-2">${match.awayOdds.toFixed(2)}</div>
-                <h1 class="display-6 fw-bold my-3" style="font-size: 28px;">The User's Odds</h1>
+                <h1 class="display-6 fw-bold my-3" style="font-size: 28px;">- The User's Odds -</h1>
                 <div id="homeOdds${match.id}" class="odds-display my-2">${match.homeOdds.toFixed(2)}</div>`
                 section.appendChild(odds);
             }
@@ -125,6 +138,25 @@ function vote(team, id) {
                 awayOdds.classList.remove("invert")
                 homeOdds.classList.remove("invert")
             }, 1000);
+
+            const container = document.getElementById('toastContainer');
+            const newToast = document.createElement('div');
+            newToast.className = 'toast bg-dark';
+            newToast.role = 'alert';
+            newToast['aria-live'] = 'assertive';
+            newToast['aria-atomic'] = 'true';
+            newToast.innerHTML = `
+            <div class="toast-header">
+                <strong class="me-auto">TodayOnNHL</strong>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            <div id="toastBody" class="text-white toast-body">
+                You're backing ${team}
+            </div>`;
+            container.appendChild(newToast);
+            const toastInstance = bootstrap.Toast.getOrCreateInstance(newToast);
+            toastInstance.show();
         })
 }
 
