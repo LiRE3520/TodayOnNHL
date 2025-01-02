@@ -5,12 +5,12 @@
     "home": "Washington Capitals",
     "date": "2024-12-31",
     "time": "17:30 GMT",
-    "awayVotes": 16,
-    "homeVotes": 29,
-    "awayPercent": 36,
-    "homePercent": 64,
-    "homeOdds": 1.5625,
-    "awayOdds": 2.7777777777777777
+    "awayVotes": 31,
+    "homeVotes": 43,
+    "awayPercent": 42,
+    "homePercent": 58,
+    "homeOdds": 1.7241379310344827,
+    "awayOdds": 2.380952380952381
   },
   {
     "id": 1189,
@@ -18,12 +18,12 @@
     "home": "Toronto Maple Leafs",
     "date": "2024-12-31",
     "time": "18:00 GMT",
-    "awayVotes": 3,
-    "homeVotes": 1,
-    "awayPercent": 75,
-    "homePercent": 25,
-    "homeOdds": 2,
-    "awayOdds": 2
+    "awayVotes": 5,
+    "homeVotes": 8,
+    "awayPercent": 38,
+    "homePercent": 62,
+    "homeOdds": 1.6129032258064515,
+    "awayOdds": 2.6315789473684212
   },
   {
     "id": 1190,
@@ -44,12 +44,12 @@
     "home": "Chicago Blackhawks",
     "date": "2024-12-31",
     "time": "22:00 GMT",
-    "awayVotes": 1,
+    "awayVotes": 2,
     "homeVotes": 1,
-    "awayPercent": 50,
-    "homePercent": 50,
-    "homeOdds": 2,
-    "awayOdds": 2
+    "awayPercent": 67,
+    "homePercent": 33,
+    "homeOdds": 3.0303030303030303,
+    "awayOdds": 1.492537313432836
   },
   {
     "id": 1192,

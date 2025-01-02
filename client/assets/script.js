@@ -115,8 +115,16 @@ function vote(team, id) {
             document.getElementById(`homeBar${match.id}`).style.width = `${match.homePercent}%`;
             document.getElementById(`awayBar${match.id}`).innerHTML = `${match.awayVotes} votes`;
             document.getElementById(`homeBar${match.id}`).innerHTML = `${match.homeVotes} votes`;
-            document.getElementById(`awayOdds${match.id}`).innerText = match.awayOdds.toFixed(2);
-            document.getElementById(`homeOdds${match.id}`).innerText = match.homeOdds.toFixed(2);
+            const awayOdds = document.getElementById(`awayOdds${match.id}`);
+            const homeOdds = document.getElementById(`homeOdds${match.id}`);
+            awayOdds.classList.add("invert");
+            homeOdds.classList.add("invert");
+            awayOdds.innerText = match.awayOdds.toFixed(2);
+            homeOdds.innerText = match.homeOdds.toFixed(2);
+            setTimeout(() => {
+                awayOdds.classList.remove("invert")
+                homeOdds.classList.remove("invert")
+            }, 1000);
         })
 }
 
@@ -125,7 +133,7 @@ document.addEventListener("DOMContentLoaded", viewHome);
 
 document.getElementById("showStandings").addEventListener("click", viewStandings);
 document.getElementById("showSchedule").addEventListener("click", viewSchedule);
-document.getElementById("title").addEventListener("click", viewHome);
+document.getElementById("goToHome").addEventListener("click", viewHome);
 
 document.getElementById("seeTheStandings").addEventListener("click", viewStandings);
 document.getElementById("seeTheSchedule").addEventListener("click", viewSchedule);

@@ -105,3 +105,9 @@
     background-color: #9a1a1a;
     color: white;
 }
+
+.odds-display.invert {
+    background-color: #9a1a1a !important;
+    color: white !important;
+    transition: background-color 0.3s, color 0.3s;
+}
