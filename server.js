@@ -30,13 +30,15 @@ app.get("/api/schedule", function(req,resp){
 app.post("/api/vote", function(req,resp){
     let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
     let match = matches.find(match => match.id === req.body.id);
-    if (req.body.team === match.team1) {
-        match.team1Votes++;
+    if (req.body.team === match.away) {
+        match.awayVotes++;
     } else {
-        match.team2Votes++;
+        match.homeVotes++;
     }
-    match.team1Percent = Math.round(match.team1Votes / (match.team1Votes + match.team2Votes) * 100)
-    match.team2Percent = Math.round(match.team2Votes / (match.team1Votes + match.team2Votes) * 100)
+    match.awayPercent = Math.round(match.awayVotes / (match.awayVotes + match.homeVotes) * 100)
+    match.homePercent = Math.round(match.homeVotes / (match.awayVotes + match.homeVotes) * 100)
+    match.awayOdds = 100 / match.awayPercent;
+    match.homeOdds = 100 / match.homePercent;
     fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
     resp.json(match)
 })

@@ -27,10 +27,10 @@ function getHome() {
             document.getElementById("topTeamLogo").innerHTML = `
             <img src="${data.topTeam.logo}" class="img-fluid" height=190 width=190>`
             document.getElementById("nextMatchTeams").innerHTML = `
-            ${data.nextMatch.team1} @ ${data.nextMatch.team2}`;
+            ${data.nextMatch.away} @ ${data.nextMatch.home}`;
             document.getElementById("nextMatchLogos").innerHTML = `
-            <img src="assets/logos/${data.nextMatch.team1}.svg" class="img-fluid" height=190 width=190>
-            <img src="assets/logos/${data.nextMatch.team2}.svg" class="img-fluid" height=190 width=190>`;
+            <img src="assets/logos/${data.nextMatch.away}.svg" class="img-fluid" height=190 width=190>
+            <img src="assets/logos/${data.nextMatch.home}.svg" class="img-fluid" height=190 width=190>`;
         });
 }
 
@@ -67,9 +67,9 @@ function getSchedule() {
                 card.innerHTML = `
                 <div class="card-body">
                     <div class="d-flex justify-content-around align-items-center">
-                        <img src="assets/logos/${match.team1}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.team1}', ${match.id})">
-                        <h5 class="card-title">${match.team1} @ ${match.team2}</h5>
-                        <img src="assets/logos/${match.team2}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.team2}', ${match.id})">
+                        <img src="assets/logos/${match.away}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.away}', ${match.id})">
+                        <h5 class="card-title">${match.away} @ ${match.home}</h5>
+                        <img src="assets/logos/${match.home}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.home}', ${match.id})">
                     </div>
                     <p class="card-text">${match.date} | ${match.time}</p>
                 </div>`
@@ -78,15 +78,22 @@ function getSchedule() {
                 bar.className = "progress";
                 bar.style.height = "30px";
                 bar.innerHTML = `
-                <div id="team1Bar${match.id}" class="progress-bar progress-bar-left" role="progressbar" style="width: ${match.team1Percent}%" 
+                <div id="awayBar${match.id}" class="progress-bar progress-bar-left" role="progressbar" style="width: ${match.awayPercent}%" 
                  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                ${match.team1Votes} votes
+                ${match.awayVotes} votes
                 </div>
-                <div id="team2Bar${match.id}" class="progress-bar progress-bar-right" role="progressbar" style="width: ${match.team2Percent}%" 
+                <div id="homeBar${match.id}" class="progress-bar progress-bar-right" role="progressbar" style="width: ${match.homePercent}%" 
                  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                ${match.team2Votes} votes
+                ${match.homeVotes} votes
                 </div>`;
                 section.appendChild(bar);
+                const odds = document.createElement("div");
+                odds.className = "d-flex justify-content-evenly my-3";
+                odds.innerHTML = `
+                <div id="awayOdds${match.id}" class="odds-display my-2">${match.awayOdds.toFixed(2)}</div>
+                <h1 class="display-6 fw-bold my-3" style="font-size: 28px;">The User's Odds</h1>
+                <div id="homeOdds${match.id}" class="odds-display my-2">${match.homeOdds.toFixed(2)}</div>`
+                section.appendChild(odds);
             }
         });
 }
@@ -104,10 +111,12 @@ function vote(team, id) {
     })
         .then(resp => resp.json())
         .then(match => {
-            document.getElementById(`team1Bar${match.id}`).style.width = `${match.team1Percent}%`;
-            document.getElementById(`team2Bar${match.id}`).style.width = `${match.team2Percent}%`;
-            document.getElementById(`team1Bar${match.id}`).innerHTML = `${match.team1Votes} votes`;
-            document.getElementById(`team2Bar${match.id}`).innerHTML = `${match.team2Votes} votes`;
+            document.getElementById(`awayBar${match.id}`).style.width = `${match.awayPercent}%`;
+            document.getElementById(`homeBar${match.id}`).style.width = `${match.homePercent}%`;
+            document.getElementById(`awayBar${match.id}`).innerHTML = `${match.awayVotes} votes`;
+            document.getElementById(`homeBar${match.id}`).innerHTML = `${match.homeVotes} votes`;
+            document.getElementById(`awayOdds${match.id}`).innerText = match.awayOdds.toFixed(2);
+            document.getElementById(`homeOdds${match.id}`).innerText = match.homeOdds.toFixed(2);
         })
 }
 

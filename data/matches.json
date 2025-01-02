@@ -1,57 +1,67 @@
 [
   {
     "id": 1188,
-    "team1": "Boston Bruins",
-    "team2": "Washington Capitals",
+    "away": "Boston Bruins",
+    "home": "Washington Capitals",
     "date": "2024-12-31",
     "time": "17:30 GMT",
-    "team1Votes": 3,
-    "team2Votes": 5,
-    "team1Percent": 38,
-    "team2Percent": 63
+    "awayVotes": 16,
+    "homeVotes": 29,
+    "awayPercent": 36,
+    "homePercent": 64,
+    "homeOdds": 1.5625,
+    "awayOdds": 2.7777777777777777
   },
   {
     "id": 1189,
-    "team1": "New York Islanders",
-    "team2": "Toronto Maple Leafs",
+    "away": "New York Islanders",
+    "home": "Toronto Maple Leafs",
     "date": "2024-12-31",
     "time": "18:00 GMT",
-    "team1Votes": 3,
-    "team2Votes": 1,
-    "team1Percent": 75,
-    "team2Percent": 25
+    "awayVotes": 3,
+    "homeVotes": 1,
+    "awayPercent": 75,
+    "homePercent": 25,
+    "homeOdds": 2,
+    "awayOdds": 2
   },
   {
     "id": 1190,
-    "team1": "Montreal Canadiens",
-    "team2": "Vegas Golden Knights",
+    "away": "Montreal Canadiens",
+    "home": "Vegas Golden Knights",
     "date": "2024-12-31",
     "time": "20:00 GMT",
-    "team1Votes": 1,
-    "team2Votes": 2,
-    "team1Percent": 33,
-    "team2Percent": 67
+    "awayVotes": 1,
+    "homeVotes": 2,
+    "awayPercent": 33,
+    "homePercent": 67,
+    "homeOdds": 2,
+    "awayOdds": 2
   },
   {
     "id": 1191,
-    "team1": "St. Louis Blues",
-    "team2": "Chicago Blackhawks",
+    "away": "St. Louis Blues",
+    "home": "Chicago Blackhawks",
     "date": "2024-12-31",
     "time": "22:00 GMT",
-    "team1Votes": 1,
-    "team2Votes": 1,
-    "team1Percent": 50,
-    "team2Percent": 50
+    "awayVotes": 1,
+    "homeVotes": 1,
+    "awayPercent": 50,
+    "homePercent": 50,
+    "homeOdds": 2,
+    "awayOdds": 2
   },
   {
     "id": 1192,
-    "team1": "Pittsburgh Penguins",
-    "team2": "Detroit Red Wings",
+    "away": "Pittsburgh Penguins",
+    "home": "Detroit Red Wings",
     "date": "2025-01-01",
     "time": "01:00 GMT",
-    "team1Votes": 1,
-    "team2Votes": 1,
-    "team1Percent": 50,
-    "team2Percent": 50
+    "awayVotes": 1,
+    "homeVotes": 1,
+    "awayPercent": 50,
+    "homePercent": 50,
+    "homeOdds": 2,
+    "awayOdds": 2
   }
 ]
