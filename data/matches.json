@@ -5,12 +5,12 @@
     "home": "Washington Capitals",
     "date": "2024-12-31",
     "time": "17:30 GMT",
-    "awayVotes": 49,
-    "homeVotes": 77,
-    "awayPercent": 39,
-    "homePercent": 61,
-    "homeOdds": 1.639344262295082,
-    "awayOdds": 2.5641025641025643
+    "awayVotes": 52,
+    "homeVotes": 78,
+    "awayPercent": 40,
+    "homePercent": 60,
+    "homeOdds": 1.6666666666666667,
+    "awayOdds": 2.5
   },
   {
     "id": 1189,
@@ -18,12 +18,12 @@
     "home": "Toronto Maple Leafs",
     "date": "2024-12-31",
     "time": "18:00 GMT",
-    "awayVotes": 6,
-    "homeVotes": 8,
-    "awayPercent": 43,
-    "homePercent": 57,
-    "homeOdds": 1.7543859649122806,
-    "awayOdds": 2.3255813953488373
+    "awayVotes": 7,
+    "homeVotes": 9,
+    "awayPercent": 44,
+    "homePercent": 56,
+    "homeOdds": 1.7857142857142858,
+    "awayOdds": 2.272727272727273
   },
   {
     "id": 1190,
@@ -44,12 +44,12 @@
     "home": "Chicago Blackhawks",
     "date": "2024-12-31",
     "time": "22:00 GMT",
-    "awayVotes": 2,
-    "homeVotes": 1,
-    "awayPercent": 67,
-    "homePercent": 33,
-    "homeOdds": 3.0303030303030303,
-    "awayOdds": 1.492537313432836
+    "awayVotes": 3,
+    "homeVotes": 4,
+    "awayPercent": 43,
+    "homePercent": 57,
+    "homeOdds": 1.7543859649122806,
+    "awayOdds": 2.3255813953488373
   },
   {
     "id": 1192,
@@ -57,11 +57,11 @@
     "home": "Detroit Red Wings",
     "date": "2025-01-01",
     "time": "01:00 GMT",
-    "awayVotes": 1,
-    "homeVotes": 1,
-    "awayPercent": 50,
-    "homePercent": 50,
-    "homeOdds": 2,
-    "awayOdds": 2
+    "awayVotes": 2,
+    "homeVotes": 3,
+    "awayPercent": 40,
+    "homePercent": 60,
+    "homeOdds": 1.6666666666666667,
+    "awayOdds": 2.5
   }
 ]
