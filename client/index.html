@@ -82,9 +82,30 @@
                 </tr>
             </thead>
             <tbody id="standingsBody">
-
             </tbody>
-          </table>
+        </table>
+        <div class="d-grid gap-2 my-3 mx-3">
+            <button class="btn btn-addTeam" data-bs-toggle="modal" data-bs-target="#teamModal" type="button" id="addFantasyTeam">Add Your Fantasy Team</button>
+        </div>
+        <div class="modal fade" id="teamModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add Your Fantasy Team</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-addTeam">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
     </section>
 
     <section id="schedule" style="display:none">

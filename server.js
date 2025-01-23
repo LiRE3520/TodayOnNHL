@@ -43,6 +43,6 @@ app.post("/api/vote", function(req,resp){
     resp.send(match)
 })
 
-app.listen(8090, "192.168.0.121", () => {
-    console.log("Server running at: http://192.168.0.121:8090")
+app.listen(8090, () => {
+    console.log("Server running at: http://localhost:8090")
 })

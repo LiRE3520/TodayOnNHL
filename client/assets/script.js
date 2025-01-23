@@ -147,6 +147,8 @@ function vote(team, id) {
         })
 }
 
+function addFantasyTeam() {
+}
 
 document.addEventListener("DOMContentLoaded", viewHome);
 
@@ -156,3 +158,9 @@ document.getElementById("goToHome").addEventListener("click", viewHome);
 
 document.getElementById("seeTheStandings").addEventListener("click", viewStandings);
 document.getElementById("seeTheSchedule").addEventListener("click", viewSchedule);
+
+document.getElementById("addFantasyTeam").addEventListener("click", addFantasyTeam);
+
+document.getElementById("teamModal").addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+  })

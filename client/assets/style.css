@@ -111,3 +111,18 @@
     color: white !important;
     transition: background-color 0.3s, color 0.3s;
 }
+
+.btn-addTeam {
+    background-color: #9a1a1a;
+    color: white;
+    font-size: 20px;
+    border: 2px solid ;
+    border-radius: 5px;
+}
+
+.btn-addTeam:hover {
+    background-color: white;
+    color: #9a1a1a;
+    border: 2px solid ;
+    border-radius: 5px;
+}
