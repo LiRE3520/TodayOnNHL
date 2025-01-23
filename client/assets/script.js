@@ -147,9 +147,6 @@ function vote(team, id) {
         })
 }
 
-function addFantasyTeam() {
-}
-
 document.addEventListener("DOMContentLoaded", viewHome);
 
 document.getElementById("showStandings").addEventListener("click", viewStandings);
@@ -159,8 +156,17 @@ document.getElementById("goToHome").addEventListener("click", viewHome);
 document.getElementById("seeTheStandings").addEventListener("click", viewStandings);
 document.getElementById("seeTheSchedule").addEventListener("click", viewSchedule);
 
-document.getElementById("addFantasyTeam").addEventListener("click", addFantasyTeam);
-
-document.getElementById("teamModal").addEventListener('shown.bs.modal', () => {
-    myInput.focus()
-  })
+const form = document.getElementById("fantasyTeamForm")
+form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
+    const response = await fetch('/api/team/add',
+        {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: formJSON
+        });
+})
