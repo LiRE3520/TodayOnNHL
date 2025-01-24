@@ -169,4 +169,23 @@ form.addEventListener("submit", async function(event) {
               },
             body: formJSON
         });
-})
+    const teams = await response.json();
+    const body = document.getElementById("standingsBody")
+            body.innerHTML = "";
+            for (let team of teams) {
+                const row = document.createElement("tr");
+                if (team.id === "FAN") {
+                    row.style.setProperty("--bs-table-bg", "#ff7d7d", "important");
+                    row.style.setProperty("--bs-table-accent-bg", "#ff7d7d", "important");
+                    row.style.setProperty("--bs-table-hover-bg", "#ff7d7d", "important");
+                    row.style.setProperty("--bs-table-striped-bg", "#ff7d7d", "important");
+                    row.style.backgroundColor = "#ff7d7d";
+                }
+                row.innerHTML = `
+                    <th scope="row">${team.position}</th>
+                    <td><img src="${team.logo}" height=35 width=35></img></td>
+                    <td>${team.name}</td>
+                    <td>${team.gamesPlayed}</td>
+                    <td>${team.points}</td>`;
+                body.appendChild(row);}
+});

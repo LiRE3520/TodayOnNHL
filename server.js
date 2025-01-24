@@ -43,6 +43,33 @@ app.post("/api/vote", function(req,resp){
     resp.send(match)
 })
 
+app.post("/api/team/add", function(req,resp){
+    let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
+    let team = {
+        id: "FAN",
+        position: -1,
+        logo: "assets/logos/Fantasy.svg",
+        name: req.body.teamName,
+        gamesPlayed: parseInt(req.body.gamesPlayed),
+        points: parseInt(req.body.teamPoints),
+    }
+    teams.push(team);
+    teams.sort((a, b) => {
+        if (b.points === a.points) {
+            return a.gamesPlayed - b.gamesPlayed;
+        }
+        return b.points - a.points;
+    });
+    teams.forEach((team, index) => {
+        team.position = index + 1;
+    });
+    fs.writeFileSync('./data/teams.json', JSON.stringify(teams, null, 2));
+    resp.send(teams)
+})
+
+
+
+
 app.listen(8090, () => {
     console.log("Server running at: http://localhost:8090")
 })
