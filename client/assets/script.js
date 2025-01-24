@@ -2,7 +2,9 @@ function viewStandings() {
     document.getElementById("standings").style.display = "block";
     document.getElementById("home").style.display = "none";
     document.getElementById("schedule").style.display = "none";
-    getStandings();
+    fetch("/api/standings")
+        .then(resp => resp.json())
+        .then(teams => getStandings(teams));
 }
 
 function viewSchedule() {
@@ -34,22 +36,49 @@ function getHome() {
         });
 }
 
-function getStandings() {
-    fetch("/api/standings")
-        .then(resp => resp.json())
-        .then(teams => {
-            const body = document.getElementById("standingsBody")
-            body.innerHTML = "";
-            for (let team of teams) {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <th scope="row">${team.position}</th>
-                    <td><img src="${team.logo}" height=35 width=35></img></td>
-                    <td>${team.name}</td>
-                    <td>${team.gamesPlayed}</td>
-                    <td>${team.points}</td>`;
-                body.appendChild(row);}
-        });
+function getStandings(teams) {
+    let buttonText = "Add Your Fantasy Team";
+    const body = document.getElementById("standingsBody")
+        body.innerHTML = "";
+        for (let team of teams) {
+            const row = document.createElement("tr");
+            if (team.id === "FAN") {
+                row.style.setProperty("--bs-table-bg", "#ff7d7d");
+                row.style.setProperty("--bs-table-accent-bg", "#ff7d7d");
+                row.style.setProperty("--bs-table-hover-bg", "#ff7d7d");
+                row.style.setProperty("--bs-table-striped-bg", "#ff7d7d");
+                row.style.backgroundColor = "#ff7d7d";
+                buttonText = "Remove Your Fantasy Team";
+            }
+            row.innerHTML = `
+                <th scope="row">${team.position}</th>
+                <td><img src="${team.logo}" height=35 width=35></img></td>
+                <td>${team.name}</td>
+                <td>${team.gamesPlayed}</td>
+                <td>${team.points}</td>`;
+            body.appendChild(row);
+        }
+    const buttonDiv = document.getElementById("buttonDiv");
+    buttonDiv.className = "d-grid gap-2 my-3 mx-3";
+    if (buttonText === "Remove Your Fantasy Team") {
+        buttonDiv.innerHTML = `
+        <button class="btn btn-addTeam" type="button" onclick="removeFantasyTeam()">${buttonText}</button>`;
+    } else {
+        buttonDiv.innerHTML = `
+        <button class="btn btn-addTeam" type="button" data-bs-toggle="modal" data-bs-target="#teamModal">${buttonText}</button>`;
+    }
+}
+
+function removeFantasyTeam() {
+    document.getElementById("buttonDiv").innerHTML = "";
+    fetch("/api/team/remove", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(resp => resp.json())
+    .then(teams => getStandings(teams));
 }
 
 function getSchedule() {
@@ -125,26 +154,29 @@ function vote(team, id) {
                 awayOdds.classList.remove("invert")
                 homeOdds.classList.remove("invert")
             }, 1000);
-
-            const container = document.getElementById('toastContainer');
-            const newToast = document.createElement('div');
-            newToast.className = 'toast bg-dark';
-            newToast.role = 'alert';
-            newToast['aria-live'] = 'assertive';
-            newToast['aria-atomic'] = 'true';
-            newToast.innerHTML = `
-            <div class="toast-header">
-                <strong class="me-auto">TodayOnNHL</strong>
-                <small>Just now</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            <div id="toastBody" class="text-white toast-body">
-                You're backing ${team}
-            </div>`;
-            container.appendChild(newToast);
-            const toastInstance = bootstrap.Toast.getOrCreateInstance(newToast);
-            toastInstance.show();
+            createToast(`You're backing the ${team}`);
         })
+}
+
+function createToast(message) {
+    const container = document.getElementById('toastContainer');
+    const newToast = document.createElement('div');
+    newToast.className = 'toast bg-dark';
+    newToast.role = 'alert';
+    newToast['aria-live'] = 'assertive';
+    newToast['aria-atomic'] = 'true';
+    newToast.innerHTML = `
+    <div class="toast-header">
+        <strong class="me-auto">TodayOnNHL</strong>
+        <small>Just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    <div id="toastBody" class="text-white toast-body">
+        ${message}
+    </div>`;
+    container.appendChild(newToast);
+    const toastInstance = bootstrap.Toast.getOrCreateInstance(newToast);
+    toastInstance.show();
 }
 
 document.addEventListener("DOMContentLoaded", viewHome);
@@ -169,23 +201,12 @@ form.addEventListener("submit", async function(event) {
               },
             body: formJSON
         });
+        if (!response.ok) { 
+            const errorMessage = await response.text();
+            createToast(errorMessage);
+            return;
+        }
     const teams = await response.json();
-    const body = document.getElementById("standingsBody")
-            body.innerHTML = "";
-            for (let team of teams) {
-                const row = document.createElement("tr");
-                if (team.id === "FAN") {
-                    row.style.setProperty("--bs-table-bg", "#ff7d7d", "important");
-                    row.style.setProperty("--bs-table-accent-bg", "#ff7d7d", "important");
-                    row.style.setProperty("--bs-table-hover-bg", "#ff7d7d", "important");
-                    row.style.setProperty("--bs-table-striped-bg", "#ff7d7d", "important");
-                    row.style.backgroundColor = "#ff7d7d";
-                }
-                row.innerHTML = `
-                    <th scope="row">${team.position}</th>
-                    <td><img src="${team.logo}" height=35 width=35></img></td>
-                    <td>${team.name}</td>
-                    <td>${team.gamesPlayed}</td>
-                    <td>${team.points}</td>`;
-                body.appendChild(row);}
+    document.getElementById("buttonDiv").innerHTML = "";
+    getStandings(teams);
 });

@@ -45,6 +45,10 @@ app.post("/api/vote", function(req,resp){
 
 app.post("/api/team/add", function(req,resp){
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
+    if (teams.find(team => team.id === "FAN")) {
+        resp.status(400).send("You have already added your fantasy team!");
+        return;
+    }
     let team = {
         id: "FAN",
         position: -1,
@@ -67,7 +71,21 @@ app.post("/api/team/add", function(req,resp){
     resp.send(teams)
 })
 
-
+app.delete("/api/team/remove", function(req,resp){
+    let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'))
+    teams = teams.filter(team => team.id !== "FAN");
+    teams.sort((a, b) => {
+        if (b.points === a.points) {
+            return a.gamesPlayed - b.gamesPlayed;
+        }
+        return b.points - a.points;
+    }); 
+    teams.forEach((team, index) => {
+        team.position = index + 1;
+    });   
+    fs.writeFileSync('./data/teams.json', JSON.stringify(teams, null, 2))
+    resp.send(teams)
+})
 
 
 app.listen(8090, () => {
