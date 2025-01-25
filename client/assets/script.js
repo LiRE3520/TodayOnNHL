@@ -11,7 +11,9 @@ function viewSchedule() {
     document.getElementById("standings").style.display = "none";
     document.getElementById("home").style.display = "none";
     document.getElementById("schedule").style.display = "block";
-    getSchedule();
+    fetch("/api/schedule")
+    .then(resp => resp.json())
+    .then(matches => getSchedule(matches));
 }
 
 function viewHome() {
@@ -80,49 +82,64 @@ function removeFantasyTeam() {
     .then(teams => getStandings(teams));
 }
 
-function getSchedule() {
-    fetch("/api/schedule")
-        .then(resp => resp.json())
-        .then(matches => {
-            const cards = document.getElementById("matchCards")
-            cards.innerHTML = ""
-            for (let match of matches) {
-                const card = document.createElement("div");
-                card.className = "card text-center mb-3";
-                card.innerHTML = `
-                <div class="card-body">
-                    <div class="d-flex justify-content-around align-items-center">
-                        <img src="assets/logos/${match.away}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.away}', ${match.id})">
-                        <h5 class="card-title">${match.away} @ ${match.home}</h5>
-                        <img src="assets/logos/${match.home}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.home}', ${match.id})">
-                    </div>
-                    <p class="card-text">${match.date} | ${match.time}</p>
-                </div>`
-                cards.appendChild(card);
-                const bar = document.createElement("div");
-                bar.className = "progress";
-                bar.style.height = "30px";
-                bar.innerHTML = `
-                <div id="awayBar${match.id}" class="progress-bar progress-bar-left" role="progressbar" style="width: ${match.awayPercent}%" 
-                 aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                ${match.awayVotes} votes
+function getSchedule(matches) {
+    fetch("/api/teams")
+    .then(resp => resp.json())
+    .then(teams => {
+        const cards = document.getElementById("matchCards")
+        cards.innerHTML = ""
+        for (let match of matches) {
+            console.log(match)
+            awayName = teams.find(team => team.id === match.away).name;
+            homeName = teams.find(team => team.id === match.home).name;
+            const card = document.createElement("div");
+            card.className = "card text-center mb-3";
+            card.innerHTML = `
+            <div class="card-body">
+                <div class="d-flex justify-content-around align-items-center">
+                    <img src="assets/logos/${awayName}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${awayName}', '${match.id}')">
+                    <h5 class="card-title">${awayName} @ ${homeName}</h5>
+                    <img src="assets/logos/${homeName}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${homeName}', '${match.id}')">
                 </div>
-                <div id="homeBar${match.id}" class="progress-bar progress-bar-right" role="progressbar" style="width: ${match.homePercent}%" 
-                 aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                ${match.homeVotes} votes
-                </div>`;
-                cards.appendChild(bar);
-                const odds = document.createElement("div");
-                odds.className = "d-flex justify-content-evenly my-3";
-                odds.innerHTML = `
-                <div id="awayOdds${match.id}" class="odds-display my-2">${match.awayOdds.toFixed(2)}</div>
-                <h1 class="display-6 fw-bold my-3" style="font-size: 28px;">- The User's Odds -</h1>
-                <div id="homeOdds${match.id}" class="odds-display my-2">${match.homeOdds.toFixed(2)}</div>`
-                cards.appendChild(odds);
-            }
+                <p class="card-text">${match.date} | ${match.time}</p>
+            </div>`
+            cards.appendChild(card);
+            const bar = document.createElement("div");
+            bar.className = "progress";
+            bar.style.height = "30px";
+            bar.innerHTML = `
+            <div id="awayBar${match.id}" class="progress-bar progress-bar-left" role="progressbar" style="width: ${match.awayPercent}%" 
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+            ${match.awayVotes} votes
+            </div>
+            <div id="homeBar${match.id}" class="progress-bar progress-bar-right" role="progressbar" style="width: ${match.homePercent}%" 
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+            ${match.homeVotes} votes
+            </div>`;
+            cards.appendChild(bar);
+            const odds = document.createElement("div");
+            odds.className = "d-flex justify-content-evenly my-3";
+            odds.innerHTML = `
+            <div id="awayOdds${match.id}" class="odds-display my-2">${match.awayOdds.toFixed(2)}</div>
+            <h1 class="display-6 fw-bold my-3" style="font-size: 28px;">- The User's Odds -</h1>
+            <div id="homeOdds${match.id}" class="odds-display my-2">${match.homeOdds.toFixed(2)}</div>`
+            cards.appendChild(odds);
+        }
         buttonDiv = document.getElementById("matchButtonDiv");
         buttonDiv.innerHTML = `<button class="btn btn-addTeam" type="button" data-bs-toggle="modal" data-bs-target="#matchModal">Add A Fantasy Match</button>`
-    });
+        const awaySelect = document.getElementById("awaySelect");
+        awaySelect.innerHTML = `
+        <option selected>Away Team</option>`
+        const homeSelect = document.getElementById("homeSelect");
+        homeSelect.innerHTML = `
+        <option selected>Home Team</option>`
+        for (let team of teams) {
+            awaySelect.innerHTML += `
+            <option value="${team.id}">${team.name}</option>`
+            homeSelect.innerHTML += `
+            <option value="${team.id}">${team.name}</option>`
+        }
+    })
 }
 
 function vote(team, id) {

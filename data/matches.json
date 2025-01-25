@@ -1,20 +1,20 @@
 [
   {
     "id": "1188",
-    "away": "Boston Bruins",
-    "home": "Washington Capitals",
+    "away": "BOS",
+    "home": "WSH",
     "date": "2024-12-31T17:30:00",
-    "awayVotes": 100,
-    "homeVotes": 98,
-    "awayPercent": 51,
-    "homePercent": 49,
-    "homeOdds": 2.0408163265306123,
-    "awayOdds": 1.9607843137254901
+    "awayVotes": 103,
+    "homeVotes": 102,
+    "awayPercent": 50,
+    "homePercent": 50,
+    "homeOdds": 2,
+    "awayOdds": 2
   },
   {
     "id": "1189",
-    "away": "New York Islanders",
-    "home": "Toronto Maple Leafs",
+    "away": "NYI",
+    "home": "TOR",
     "date": "2024-12-31T18:00:00",
     "awayVotes": 12,
     "homeVotes": 15,
@@ -25,8 +25,8 @@
   },
   {
     "id": "1190",
-    "away": "Montreal Canadiens",
-    "home": "Vegas Golden Knights",
+    "away": "MTL",
+    "home": "VGK",
     "date": "2024-12-31T20:00:00",
     "awayVotes": 18,
     "homeVotes": 6,
@@ -37,20 +37,20 @@
   },
   {
     "id": "1191",
-    "away": "St. Louis Blues",
-    "home": "Chicago Blackhawks",
+    "away": "STL",
+    "home": "CHI",
     "date": "2024-12-31T22:00:00",
     "awayVotes": 3,
-    "homeVotes": 4,
-    "awayPercent": 43,
-    "homePercent": 57,
-    "homeOdds": 1.7543859649122806,
-    "awayOdds": 2.3255813953488373
+    "homeVotes": 10,
+    "awayPercent": 23,
+    "homePercent": 77,
+    "homeOdds": 1.2987012987012987,
+    "awayOdds": 4.3478260869565215
   },
   {
     "id": "1192",
-    "away": "Pittsburgh Penguins",
-    "home": "Detroit Red Wings",
+    "away": "PIT",
+    "home": "DET",
     "date": "2025-01-01T01:00:00",
     "awayVotes": 2,
     "homeVotes": 3,
@@ -58,17 +58,5 @@
     "homePercent": 60,
     "homeOdds": 1.6666666666666667,
     "awayOdds": 2.5
-  },
-  {
-    "id": "F1",
-    "away": "1",
-    "home": "2",
-    "date": "2025-01-25T21:28:00",
-    "awayVotes": -1,
-    "homeVotes": -1,
-    "awayPercent": 61,
-    "homePercent": 39,
-    "homeOdds": 2.5641025641025643,
-    "awayOdds": 1.639344262295082
   }
 ]

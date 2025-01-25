@@ -110,6 +110,15 @@ app.post("/api/matches", function(req,resp){
     resp.send(matches)
 })
 
+app.get("/api/teams", function(req,resp){
+    let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
+    let teamList = teams.map(team => ({
+        id: team.id,
+        name: team.name
+    }));
+    resp.send(teamList)
+})
+
 app.listen(8090, () => {
     console.log("Server running at: http://localhost:8090")
 })
