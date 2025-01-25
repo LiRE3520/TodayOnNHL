@@ -84,27 +84,27 @@
             <tbody id="standingsBody">
             </tbody>
         </table>
-        <div class="d-grid gap-2 my-3 mx-3" id="buttonDiv"></div>
-        <div class="modal fade" id="teamModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="d-grid gap-2 my-3 mx-3" id="teamButtonDiv"></div>
+        <div class="modal fade" id="teamModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add Your Fantasy Team</h1>
+                  <h1 class="modal-title fs-5">Add Your Fantasy Team</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="fantasyTeamForm" method="post">
                         <div class="input-group input-group-lg my-3">
                             <span class="input-group-text" id="inputGroup-sizing-lg">Team Name:</span>
-                            <input type="text" class="form-control" name="teamName" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                            <input type="text" class="form-control" name="teamName" aria-describedby="inputGroup-sizing-lg">
                         </div>
                         <div class="input-group input-group-lg my-3">
                             <span class="input-group-text" id="inputGroup-sizing-lg">Games Played:</span>
-                            <input type="text" class="form-control" name="gamesPlayed" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                            <input type="text" class="form-control" name="gamesPlayed" aria-describedby="inputGroup-sizing-lg">
                         </div>
                         <div class="input-group input-group-lg my-3">
                             <span class="input-group-text" id="inputGroup-sizing-lg">Team Points:</span>
-                            <input type="text" class="form-control" name="teamPoints" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                            <input type="text" class="form-control" name="teamPoints" aria-describedby="inputGroup-sizing-lg">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-addTeam" id="addFantasyTeam">Save changes</button>
@@ -113,10 +113,56 @@
                 </div>
               </div>
             </div>
-          </div>
+        </div>
     </section>
 
     <section id="schedule" style="display:none">
+        <div class="d-flex justify-content-center my-3">
+            <h1 class="display-5 fw-bold">Which teams will you back?</h1>
+        </div>
+        <div id="matchCards"></div>
+        <div class="d-grid gap-2 my-3 mx-3" id="matchButtonDiv"></div>
+        <div class="modal fade" id="matchModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Add A Fantasy Match</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="fantasyMatchForm" method="post">
+                        <div class="input-group input-group-lg my-3">
+                            <span class="input-group-text" id="inputGroup-sizing-lg">Away Team</span>
+                            <input type="text" class="form-control" name="away" aria-describedby="inputGroup-sizing-lg">
+                        </div>
+                        <div class="input-group input-group-lg my-3">
+                            <span class="input-group-text" id="inputGroup-sizing-lg">Home Team:</span>
+                            <input type="text" class="form-control" name="home" aria-describedby="inputGroup-sizing-lg">
+                        </div>
+                        <div class="input-group input-group-lg my-3">
+                            <span class="input-group-text" id="inputGroup-sizing-lg">Date:</span>
+                            <input type="text" class="form-control" name="date" aria-describedby="inputGroup-sizing-lg">
+                        </div>
+                        <div class="input-group input-group-lg my-3">
+                            <span class="input-group-text" id="inputGroup-sizing-lg">Time:</span>
+                            <input type="text" class="form-control" name="time" aria-describedby="inputGroup-sizing-lg">
+                        </div>
+                        <div class="input-group input-group-lg my-3">
+                            <label for="oddsRange" class="form-label">Who's likely to win?</label>
+                            <input type="range" class="form-range" name ="odds" min="0" max="10" step="0.1" id="oddsRange">
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="me-auto p-2">Away</div>
+                            <div class="p-2">Home</div>
+                          </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-addTeam" id="addFantasyTeam">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+        </div>
     </section>
 
     <footer class="bg-dark text-white text-center py-3 mt-auto">

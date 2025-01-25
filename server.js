@@ -56,7 +56,6 @@ function sortTeams(teams) {
     return teams
 }
 
-
 app.post("/api/team/add", function(req,resp){
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
     if (teams.find(team => team.id === "FAN")) {
@@ -85,6 +84,27 @@ app.delete("/api/team/remove", function(req,resp){
     resp.send(teams)
 })
 
+app.post("/api/matches", function(req,resp){
+    let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
+    fantasyMatches = matches.filter(match => match.id[0] === "F");
+    maxFantasyMatch = Math.max(...fantasyMatches.map(match => parseInt(match.id.slice(1, match.id.length))));
+    let match = {
+        id: "F" && (maxFantasyMatch + 1),
+        away: req.body.away,
+        home: req.body.home,
+        date: req.body.date,
+        awayVotes: -1,
+        homeVotes: -1,
+        awayPercent: -1,
+        homePercent: -1,
+        homeOdds: req.body.homeOdds,
+        awayOdds: req.body.awayOdds,
+    }
+    matches.push(match);
+    matches.sort((a, b) => new Date(a.date) - new Date(b.date));
+    fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
+    resp.send(matches)
+})
 
 app.listen(8090, () => {
     console.log("Server running at: http://localhost:8090")
