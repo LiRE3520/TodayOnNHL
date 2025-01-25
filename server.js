@@ -87,18 +87,22 @@ app.delete("/api/team/remove", function(req,resp){
 app.post("/api/matches", function(req,resp){
     let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
     fantasyMatches = matches.filter(match => match.id[0] === "F");
-    maxFantasyMatch = Math.max(...fantasyMatches.map(match => parseInt(match.id.slice(1, match.id.length))));
+    if (fantasyMatches.length > 0) {
+        maxFantasyMatch = Math.max(...fantasyMatches.map(match => parseInt(match.id.slice(1, match.id.length))));
+    } else {
+        maxFantasyMatch = 0;
+    }
     let match = {
-        id: "F" && (maxFantasyMatch + 1),
+        id: "F" + (maxFantasyMatch + 1),
         away: req.body.away,
         home: req.body.home,
-        date: req.body.date,
+        date: req.body.datetime + ":00",
         awayVotes: -1,
         homeVotes: -1,
-        awayPercent: -1,
-        homePercent: -1,
-        homeOdds: req.body.homeOdds,
-        awayOdds: req.body.awayOdds,
+        awayPercent: parseInt(req.body.odds),
+        homePercent: 100 - parseInt(req.body.odds),
+        homeOdds: 100 / (100 - parseInt(req.body.odds)),
+        awayOdds: 100 / parseInt(req.body.odds),
     }
     matches.push(match);
     matches.sort((a, b) => new Date(a.date) - new Date(b.date));

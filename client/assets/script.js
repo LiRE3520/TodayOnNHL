@@ -186,10 +186,10 @@ document.getElementById("goToHome").addEventListener("click", viewHome);
 document.getElementById("seeTheStandings").addEventListener("click", viewStandings);
 document.getElementById("seeTheSchedule").addEventListener("click", viewSchedule);
 
-const form = document.getElementById("fantasyTeamForm")
-form.addEventListener("submit", async function(event) {
+const teamForm = document.getElementById("fantasyTeamForm")
+teamForm.addEventListener("submit", async function(event) {
     event.preventDefault();
-    const formData = new FormData(form);
+    const formData = new FormData(teamForm);
     const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
     const response = await fetch('/api/team/add',
         {
@@ -208,3 +208,27 @@ form.addEventListener("submit", async function(event) {
     document.getElementById("teamButtonDiv").innerHTML = "";
     getStandings(teams);
 });
+
+const matchForm = document.getElementById("fantasyMatchForm")
+matchForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const formData = new FormData(matchForm);
+    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
+    console.log(formJSON)
+    const response = await fetch('/api/matches',
+        {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: formJSON
+        });
+        if (!response.ok) { 
+            const errorMessage = await response.text();
+            createToast(errorMessage);
+            return;
+        }
+    const matches = await response.json();
+    document.getElementById("matchButtonDiv").innerHTML = "";
+    getSchedule(matches);
+}); 
