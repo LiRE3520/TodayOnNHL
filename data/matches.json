@@ -5,7 +5,7 @@
     "home": "Washington Capitals",
     "date": "2024-12-31",
     "time": "17:30 GMT",
-    "awayVotes": 82,
+    "awayVotes": 83,
     "homeVotes": 98,
     "awayPercent": 46,
     "homePercent": 54,
@@ -18,12 +18,12 @@
     "home": "Toronto Maple Leafs",
     "date": "2024-12-31",
     "time": "18:00 GMT",
-    "awayVotes": 10,
+    "awayVotes": 12,
     "homeVotes": 15,
-    "awayPercent": 40,
-    "homePercent": 60,
-    "homeOdds": 1.6666666666666667,
-    "awayOdds": 2.5
+    "awayPercent": 44,
+    "homePercent": 56,
+    "homeOdds": 1.7857142857142858,
+    "awayOdds": 2.272727272727273
   },
   {
     "id": 1190,

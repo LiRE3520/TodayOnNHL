@@ -43,6 +43,20 @@ app.post("/api/vote", function(req,resp){
     resp.send(match)
 })
 
+function sortTeams(teams) {
+    teams.sort((a, b) => {
+        if (b.points === a.points) {
+            return a.gamesPlayed - b.gamesPlayed;
+        }
+        return b.points - a.points;
+    }); 
+    teams.forEach((team, index) => {
+        team.position = index + 1;
+    });  
+    return teams
+}
+
+
 app.post("/api/team/add", function(req,resp){
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
     if (teams.find(team => team.id === "FAN")) {
@@ -58,15 +72,7 @@ app.post("/api/team/add", function(req,resp){
         points: parseInt(req.body.teamPoints),
     }
     teams.push(team);
-    teams.sort((a, b) => {
-        if (b.points === a.points) {
-            return a.gamesPlayed - b.gamesPlayed;
-        }
-        return b.points - a.points;
-    });
-    teams.forEach((team, index) => {
-        team.position = index + 1;
-    });
+    teams = sortTeams(teams);
     fs.writeFileSync('./data/teams.json', JSON.stringify(teams, null, 2));
     resp.send(teams)
 })
@@ -74,15 +80,7 @@ app.post("/api/team/add", function(req,resp){
 app.delete("/api/team/remove", function(req,resp){
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'))
     teams = teams.filter(team => team.id !== "FAN");
-    teams.sort((a, b) => {
-        if (b.points === a.points) {
-            return a.gamesPlayed - b.gamesPlayed;
-        }
-        return b.points - a.points;
-    }); 
-    teams.forEach((team, index) => {
-        team.position = index + 1;
-    });   
+    teams = sortTeams(teams); 
     fs.writeFileSync('./data/teams.json', JSON.stringify(teams, null, 2))
     resp.send(teams)
 })
