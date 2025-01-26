@@ -31,12 +31,12 @@ async function viewHome() {
         document.getElementById("standings").style.display = "none";
         document.getElementById("home").style.display = "block";
         document.getElementById("schedule").style.display = "none";
-        document.getElementById("topTeamName").innerHTML = team.name;
+        document.getElementById("topTeamHeader").innerHTML = team.name;
         document.getElementById("topTeamLogo").innerHTML = `
         <img src="${team.logo}" class="img-fluid" height=190 width=190>`
         response = await fetch("/api/matches?next=true")
         const match = await response.json()
-        document.getElementById("nextMatchTeams").innerHTML = `
+        document.getElementById("nextMatchHeader").innerHTML = `
         ${match.away.name} @ ${match.home.name}`;
         document.getElementById("nextMatchLogos").innerHTML = `
         <img src="assets/logos/${match.away.id}.svg" class="img-fluid" height=190 width=190>
@@ -49,7 +49,7 @@ async function viewHome() {
 
 function getStandings(teams) {
     let buttonText = "Add Your Fantasy Team";
-    const body = document.getElementById("standingsBody")
+    const body = document.getElementById("standingsTableBody")
         body.innerHTML = "";
         for (let team of teams) {
             const row = document.createElement("tr");
@@ -69,13 +69,13 @@ function getStandings(teams) {
                 <td>${team.points}</td>`;
             body.appendChild(row);
         }
-    const buttonDiv = document.getElementById("teamButtonDiv");
+    const buttonDiv = document.getElementById("fantasyTeamButtonDiv");
     if (buttonText === "Remove Your Fantasy Team") {
         buttonDiv.innerHTML = `
         <button class="btn page-btn" type="button" onclick="removeFantasyTeam()">${buttonText}</button>`;
     } else {
         buttonDiv.innerHTML = `
-        <button class="btn page-btn" type="button" data-bs-toggle="modal" data-bs-target="#teamModal">${buttonText}</button>`;
+        <button class="btn page-btn" type="button" data-bs-toggle="modal" data-bs-target="#fantasyTeamModal">${buttonText}</button>`;
     }
 }
 async function getSchedule(matches) {
@@ -180,7 +180,8 @@ async function addFantasyTeam(event, teamForm) {
             return;
         }
         const teams = await response.json();
-        document.getElementById("teamButtonDiv").innerHTML = "";
+        bootstrap.Modal.getInstance(document.getElementById('fantasyTeamModal')).hide()
+        document.getElementById("fantasyTeamButtonDiv").innerHTML = "";
         getStandings(teams);
     } catch (error) {
         console.error(error);
@@ -201,6 +202,7 @@ async function addFantasyMatch(event, matchForm) {
                 body: formJSON
             });
         const matches = await response.json();
+        bootstrap.Modal.getInstance(document.getElementById('addFantasyMatchModal')).hide()
         getSchedule(matches);
     } catch (error) {
         console.error(error);
@@ -221,7 +223,7 @@ async function removeFantasyTeam() {
             return;
         }
         const teams = await response.json();
-        document.getElementById("teamButtonDiv").innerHTML = "";
+        document.getElementById("fantasyTeamButtonDiv").innerHTML = "";
         getStandings(teams)
     } catch (error) {
         console.error(error);
@@ -247,6 +249,7 @@ async function removeFantasyMatch(event, removeForm) {
             return;
         }
         const matches = await response.json();
+        bootstrap.Modal.getInstance(document.getElementById('removeFantasyMatchModal')).hide()
         getSchedule(matches);
     } catch (error) {
         console.error(error);
@@ -347,12 +350,15 @@ function createToast(message) {
 
 document.addEventListener("DOMContentLoaded", viewHome);
 
-document.getElementById("showStandings").addEventListener("click", viewStandings);
-document.getElementById("showSchedule").addEventListener("click", viewSchedule);
 document.getElementById("goToHome").addEventListener("click", viewHome);
 
-document.getElementById("seeTheStandings").addEventListener("click", viewStandings);
-document.getElementById("seeTheSchedule").addEventListener("click", viewSchedule);
+document.querySelectorAll(".standings-btn").forEach(button => {
+    button.addEventListener("click", viewStandings);
+});
+document.querySelectorAll(".schedule-btn").forEach(button => {
+    button.addEventListener("click", viewSchedule);
+});
+
 
 const teamForm = document.getElementById("fantasyTeamForm")
 teamForm.addEventListener("submit", function(event) {

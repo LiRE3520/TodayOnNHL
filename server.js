@@ -56,9 +56,9 @@ app.post("/api/teams", function(req,resp){
         id: "FAN",
         position: -1,
         logo: "assets/logos/FAN.svg",
-        name: req.body.teamName,
+        name: req.body.name,
         gamesPlayed: parseInt(req.body.gamesPlayed),
-        points: parseInt(req.body.teamPoints),
+        points: parseInt(req.body.points),
     }
     teams.push(team);
     teams = sortTeams(teams);
