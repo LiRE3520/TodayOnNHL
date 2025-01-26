@@ -4,24 +4,24 @@
     "away": "BOS",
     "home": "WSH",
     "date": "2024-12-31T17:30:00",
-    "awayVotes": 103,
-    "homeVotes": 102,
-    "awayPercent": 50,
-    "homePercent": 50,
-    "homeOdds": 2,
-    "awayOdds": 2
+    "awayVotes": 104,
+    "homeVotes": 109,
+    "awayPercent": 49,
+    "homePercent": 51,
+    "homeOdds": 1.9607843137254901,
+    "awayOdds": 2.0408163265306123
   },
   {
     "id": "1189",
     "away": "NYI",
     "home": "TOR",
     "date": "2024-12-31T18:00:00",
-    "awayVotes": 12,
-    "homeVotes": 15,
-    "awayPercent": 44,
-    "homePercent": 56,
-    "homeOdds": 1.7857142857142858,
-    "awayOdds": 2.272727272727273
+    "awayVotes": 13,
+    "homeVotes": 18,
+    "awayPercent": 42,
+    "homePercent": 58,
+    "homeOdds": 1.7241379310344827,
+    "awayOdds": 2.380952380952381
   },
   {
     "id": "1190",
@@ -48,6 +48,18 @@
     "awayOdds": 4.3478260869565215
   },
   {
+    "id": "F2",
+    "away": "FAN",
+    "home": "PIT",
+    "date": "2024-12-31T23:00:00",
+    "awayVotes": -1,
+    "homeVotes": -1,
+    "awayPercent": 10,
+    "homePercent": 90,
+    "homeOdds": 1.1111111111111112,
+    "awayOdds": 10
+  },
+  {
     "id": "1192",
     "away": "PIT",
     "home": "DET",
@@ -58,5 +70,17 @@
     "homePercent": 60,
     "homeOdds": 1.6666666666666667,
     "awayOdds": 2.5
+  },
+  {
+    "id": "F1",
+    "away": "WPG",
+    "home": "VGK",
+    "date": "2025-01-25T22:40:00",
+    "awayVotes": -1,
+    "homeVotes": -1,
+    "awayPercent": 68,
+    "homePercent": 32,
+    "homeOdds": 3.125,
+    "awayOdds": 1.4705882352941178
   }
 ]

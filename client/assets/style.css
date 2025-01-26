@@ -126,3 +126,8 @@
     border: 2px solid ;
     border-radius: 5px;
 }
+
+.card-title.fantasy {
+    font-weight: bold;
+    color: #9a1a1a;
+}
