@@ -105,34 +105,38 @@ async function getSchedule(matches) {
         </div>`
         card.innerHTML = cardContent;
         cards.appendChild(card);
+        const awayPercent = (match.away.votes / (match.away.votes + match.home.votes)) * 100;
+        const homePercent = (match.home.votes / (match.away.votes + match.home.votes)) * 100;
+        const awayOdds = 100 / awayPercent;
+        const homeOdds = 100 / homePercent;
         const bar = document.createElement("div");
         bar.className = "progress";
         bar.style.height = "30px";
         let barContent = `
-        <div id="awayBar${match.id}" class="progress-bar progress-bar-left" role="progressbar" style="width: ${match.awayPercent}%" 
+        <div id="awayBar${match.id}" class="progress-bar progress-bar-left" role="progressbar" style="width: ${awayPercent}%" 
             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">`
         if (match.id[0] != "F") {
-            barContent += `${match.awayVotes} votes`
+            barContent += `${match.away.votes} votes`
         }
         barContent+= `
         </div>
-        <div id="homeBar${match.id}" class="progress-bar progress-bar-right" role="progressbar" style="width: ${match.homePercent}%" 
+        <div id="homeBar${match.id}" class="progress-bar progress-bar-right" role="progressbar" style="width: ${homePercent}%" 
             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">`
         if (match.id[0] != "F") {
-            barContent += `${match.homeVotes} votes`
+            barContent += `${match.home.votes} votes`
         }
         barContent += `</div>`;
         bar.innerHTML = barContent;
         cards.appendChild(bar);
         const odds = document.createElement("div");
         odds.className = "d-flex justify-content-evenly my-3";
-        let oddsContent = `<div id="awayOdds${match.id}" class="odds-display my-2">${match.awayOdds.toFixed(2)}</div>`
+        let oddsContent = `<div id="awayOdds${match.id}" class="odds-display my-2">${awayOdds.toFixed(2)}</div>`
         if (match.id[0] === "F") {
             oddsContent += `<h1 class="display-6 fw-bold my-3" style="font-size: 28px;">- Your Odds -</h1>`
         } else {
             oddsContent += `<h1 class="display-6 fw-bold my-3" style="font-size: 28px;">- The Fan's Odds -</h1>`
         }
-        oddsContent += `<div id="homeOdds${match.id}" class="odds-display my-2">${match.homeOdds.toFixed(2)}</div>`
+        oddsContent += `<div id="homeOdds${match.id}" class="odds-display my-2">${homeOdds.toFixed(2)}</div>`
         odds.innerHTML = oddsContent;
         cards.appendChild(odds);
     }
@@ -250,37 +254,70 @@ async function removeFantasyMatch(event, removeForm) {
     }
 }
 async function vote(team, id) {
+    const votedMatches = JSON.parse(localStorage.getItem("votedMatches")) || [];
+    const hasVoted = votedMatches.find(vote => vote.match.id === id);
+    if (hasVoted && hasVoted.match.team === team) {
+        createToast("You're already backing this team!");
+        return;
+    }
     try {
-        const response = await fetch("/api/vote", {
-            method: "POST",
+        let response = await fetch(`/api/matches/${id}`, {
+            method: "PATCH",
             headers:{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                id: id,
-                team: team
+                team: team,
+                vote: 1
             })
         });
+        if (hasVoted) {
+            response = await fetch(`/api/matches/${id}`, {
+                method: "PATCH",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    team: hasVoted.match.team,
+                    vote: -1
+                })
+            });
+        }
         const match = await response.json();
-        document.getElementById(`awayBar${match.id}`).style.width = `${match.awayPercent}%`;
-        document.getElementById(`homeBar${match.id}`).style.width = `${match.homePercent}%`;
-        document.getElementById(`awayBar${match.id}`).innerHTML = `${match.awayVotes} votes`;
-        document.getElementById(`homeBar${match.id}`).innerHTML = `${match.homeVotes} votes`;
-        const awayOdds = document.getElementById(`awayOdds${match.id}`);
-        const homeOdds = document.getElementById(`homeOdds${match.id}`);
-        awayOdds.classList.add("invert");
-        homeOdds.classList.add("invert");
-        awayOdds.innerText = match.awayOdds.toFixed(2);
-        homeOdds.innerText = match.homeOdds.toFixed(2);
+        const awayPercent = (match.away.votes / (match.away.votes + match.home.votes)) * 100;
+        const homePercent = (match.home.votes / (match.away.votes + match.home.votes)) * 100;
+        const awayOdds = 100 / awayPercent;
+        const homeOdds = 100 / homePercent;
+        document.getElementById(`awayBar${match.id}`).style.width = `${awayPercent}%`;
+        document.getElementById(`homeBar${match.id}`).style.width = `${homePercent}%`;
+        document.getElementById(`awayBar${match.id}`).innerHTML = `${match.away.votes} votes`;
+        document.getElementById(`homeBar${match.id}`).innerHTML = `${match.home.votes} votes`;
+        const awayOddsDisplay = document.getElementById(`awayOdds${match.id}`);
+        const homeOddsDisplay = document.getElementById(`homeOdds${match.id}`);
+        awayOddsDisplay.classList.add("invert");
+        homeOddsDisplay.classList.add("invert");
+        awayOddsDisplay.innerText = awayOdds.toFixed(2);
+        homeOddsDisplay.innerText = homeOdds.toFixed(2);
         setTimeout(() => {
-            awayOdds.classList.remove("invert")
-            homeOdds.classList.remove("invert")
+            awayOddsDisplay.classList.remove("invert")
+            homeOddsDisplay.classList.remove("invert")
         }, 1000);
         if (team === match.away.id) {
-            createToast(`You're backing the ${match.away.name}`);
+            createToast(`You're backing the ${match.away.name}!`);
         } else {
-            createToast(`You're backing the ${match.home.name}`);
+            createToast(`You're backing the ${match.home.name}!`);
         }
+        if (hasVoted) {
+            hasVoted.match.team = team;
+        } else {
+            votedMatches.push({
+                match: {
+                    id: id,
+                    team: team
+                }
+            })
+        }
+        localStorage.setItem("votedMatches", JSON.stringify(votedMatches));
     } catch (error) {
         console.error(error);
         createToast("Failed to vote");

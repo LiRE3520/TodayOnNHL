@@ -3,90 +3,70 @@
     "id": "1188",
     "away": {
       "id": "BOS",
-      "name": "Boston Bruins"
+      "name": "Boston Bruins",
+      "votes": 115
     },
     "home": {
       "id": "WSH",
-      "name": "Washington Capitals"
+      "name": "Washington Capitals",
+      "votes": 141
     },
-    "date": "2024-12-31T17:30:00",
-    "awayVotes": 109,
-    "homeVotes": 111,
-    "awayPercent": 50,
-    "homePercent": 50,
-    "homeOdds": 2,
-    "awayOdds": 2
+    "date": "2024-12-31T17:30:00"
   },
   {
     "id": "1189",
     "away": {
       "id": "NYI",
-      "name": "New York Islanders"
+      "name": "New York Islanders",
+      "votes": 16
     },
     "home": {
       "id": "TOR",
-      "name": "Toronto Maple Leafs"
+      "name": "Toronto Maple Leafs",
+      "votes": 22
     },
-    "date": "2024-12-31T18:00:00",
-    "awayVotes": 13,
-    "homeVotes": 18,
-    "awayPercent": 42,
-    "homePercent": 58,
-    "homeOdds": 1.7241379310344827,
-    "awayOdds": 2.380952380952381
+    "date": "2024-12-31T18:00:00"
   },
   {
     "id": "1190",
     "away": {
       "id": "MTL",
-      "name": "Montreal Canadiens"
+      "name": "Montreal Canadiens",
+      "votes": 1
     },
     "home": {
       "id": "VGK",
-      "name": "Vegas Golden Knights"
+      "name": "Vegas Golden Knights",
+      "votes": 4
     },
-    "date": "2024-12-31T20:00:00",
-    "awayVotes": 18,
-    "homeVotes": 6,
-    "awayPercent": 75,
-    "homePercent": 25,
-    "homeOdds": 4,
-    "awayOdds": 1.3333333333333333
+    "date": "2024-12-31T20:00:00"
   },
   {
     "id": "1191",
     "away": {
       "id": "STL",
-      "name": "St. Louis Blues"
+      "name": "St. Louis Blues",
+      "votes": 3
     },
     "home": {
       "id": "CHI",
-      "name": "Chicago Blackhawks"
+      "name": "Chicago Blackhawks",
+      "votes": 11
     },
-    "date": "2024-12-31T22:00:00",
-    "awayVotes": 3,
-    "homeVotes": 10,
-    "awayPercent": 23,
-    "homePercent": 77,
-    "homeOdds": 1.2987012987012987,
-    "awayOdds": 4.3478260869565215
+    "date": "2024-12-31T22:00:00"
   },
   {
     "id": "1192",
     "away": {
       "id": "PIT",
-      "name": "Pittsburgh Penguins"
+      "name": "Pittsburgh Penguins",
+      "votes": 4
     },
     "home": {
       "id": "DET",
-      "name": "Detroit Red Wings"
+      "name": "Detroit Red Wings",
+      "votes": 4
     },
-    "date": "2025-01-01T01:00:00",
-    "awayVotes": 4,
-    "homeVotes": 3,
-    "awayPercent": 57,
-    "homePercent": 43,
-    "homeOdds": 2.3255813953488373,
-    "awayOdds": 1.7543859649122806
+    "date": "2025-01-01T01:00:00"
   }
 ]

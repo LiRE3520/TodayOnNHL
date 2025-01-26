@@ -147,6 +147,25 @@ app.delete("/api/matches", function(req,resp){
     resp.send(newMatches)
 })
 
+app.patch("/api/matches/:id", function(req,resp){
+    let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
+    let match = matches.find(match => match.id === req.params.id);
+    if (!match) {
+        resp.status(400).send("Match not found!");
+        return
+    } else if (match.id[0] === "F") {
+        resp.status(400).send("You cannot vote on a fantasy match!");
+        return
+    }
+    if (match.away.id === req.body.team) {
+        match.away.votes += req.body.vote
+    } else {
+        match.home.votes += req.body.vote
+    }
+    fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
+    resp.send(match)
+})
+
 app.get("/api/standings", function(req,resp){
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
     teams.sort((a, b) => a.position - b.position);
