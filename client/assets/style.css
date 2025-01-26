@@ -2,33 +2,20 @@
     background-color:#9a1a1a;
 }
 
-.navbar-brand { /*Navbar title formatting */
-    font-family: Impact;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 48px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.navbar-brand:hover { /*Navbar title hover colour */
-    color: #ffffff;
-}
-
 .navbar-toggler { /* Navbar hamburger button border */
     border-color: #ffffff;
 }
 
 .navbar-toggler:focus { /* Navbar hamburger button border when clicked */
-    box-shadow: 0 0 0 4px #ffffff80;
+    box-shadow: 0 0 0 0.25rem #ffffff80;
 }
 
 .navbar-btn { /*Navbar standings/schedule buttons formatting*/
-    font-size: 32px;
-    font-family: Impact;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    font-size: 1.75rem;
+    font-family: 'Anton', sans-serif;
+    margin-right: 0.625rem;
+    margin-bottom: 0.3125rem;
+    margin-top: 0.3125rem;
     border: none;
 }
 
@@ -41,33 +28,33 @@
 }
 
 .navbar-flag { /*Navbar flag formatting*/
-    width: 85px;
-    height: 85px;
-    padding-left: 10px;
+    width: 3.8rem;
+    height: 3.8rem;
+    padding-right: 0.625rem;
     user-select: none;
 }
 
 .page-btn { /*Main button formatting*/
     background-color: #9a1a1a;
     color: white;
-    font-size: 20px;
-    border: 2px solid ;
-    border-radius: 5px;
+    font-size: 1.25rem;
+    border: 0.125rem solid ;
+    border-radius: 0.3125rem;
 }
 
 .page-btn:hover { /*Invert main button colours when hovering*/
     background-color: white;
     color: #9a1a1a;
-    border: 2px solid ;
-    border-radius: 5px;
+    border: 0.125rem solid ;
+    border-radius: 0.3125rem;
 }
 
 .home-img { /*Home page image padding*/
-    padding-top: 24px;
+    padding-top: 1.5rem;
 }
 
 .table { /*Standings table font size*/
-    font-size: 24px;
+    font-size: 1.2rem;
 }
 
 .vote-img { /*Cursor on team images for voting*/
@@ -84,10 +71,10 @@
 
 .odds-display { /*Odds display box formatting*/
     display: inline-block;
-    padding: 10px 20px;
+    padding: 0.625rem 1.5rem;
     background-color: white;
-    border: 2px solid ;
-    border-radius: 5px;
+    border: 0.125rem solid ;
+    border-radius: 0.3125rem;
     color: #9a1a1a;
     font-weight: bold;
     text-align: center;

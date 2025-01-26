@@ -173,6 +173,6 @@ app.get("/api/schedule", function(req,resp){
     resp.send(matches)
 })
 
-app.listen(8090, () => {
-    console.log("Server running at: http://localhost:8090")
+app.listen(8090, '10.247.157.33', () => {
+    console.log("Server running at: http://10.247.157.33:8090")
 })
