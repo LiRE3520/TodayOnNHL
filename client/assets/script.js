@@ -350,7 +350,6 @@ function createToast(message) {
 document.addEventListener("DOMContentLoaded", viewHome);
 
 document.getElementById("goToHome").addEventListener("click", viewHome);
-
 document.querySelectorAll(".standings-btn").forEach(button => {
     button.addEventListener("click", viewStandings);
 });
@@ -358,17 +357,14 @@ document.querySelectorAll(".schedule-btn").forEach(button => {
     button.addEventListener("click", viewSchedule);
 });
 
-
 const teamForm = document.getElementById("fantasyTeamForm")
 teamForm.addEventListener("submit", function(event) {
     addFantasyTeam(event, teamForm);
 });
-
 const matchForm = document.getElementById("fantasyMatchForm")
 matchForm.addEventListener("submit", function(event) {
     addFantasyMatch(event, matchForm);
-}); 
-
+});
 const removeForm = document.getElementById("removeMatchForm")
 removeForm.addEventListener("submit", function(event) {
     removeFantasyMatch(event, removeForm);
