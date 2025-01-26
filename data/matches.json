@@ -10,12 +10,12 @@
       "name": "Washington Capitals"
     },
     "date": "2024-12-31T17:30:00",
-    "awayVotes": 104,
-    "homeVotes": 109,
-    "awayPercent": 49,
-    "homePercent": 51,
-    "homeOdds": 1.9607843137254901,
-    "awayOdds": 2.0408163265306123
+    "awayVotes": 108,
+    "homeVotes": 110,
+    "awayPercent": 50,
+    "homePercent": 50,
+    "homeOdds": 2,
+    "awayOdds": 2
   },
   {
     "id": "1189",
@@ -82,11 +82,11 @@
       "name": "Detroit Red Wings"
     },
     "date": "2025-01-01T01:00:00",
-    "awayVotes": 2,
+    "awayVotes": 4,
     "homeVotes": 3,
-    "awayPercent": 40,
-    "homePercent": 60,
-    "homeOdds": 1.6666666666666667,
-    "awayOdds": 2.5
+    "awayPercent": 57,
+    "homePercent": 43,
+    "homeOdds": 2.3255813953488373,
+    "awayOdds": 1.7543859649122806
   }
 ]

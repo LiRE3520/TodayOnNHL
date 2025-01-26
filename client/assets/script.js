@@ -38,6 +38,10 @@ function viewHome() {
     })
 }
 
+
+
+
+
 function getStandings(teams) {
     let buttonText = "Add Your Fantasy Team";
     const body = document.getElementById("standingsBody")
@@ -70,9 +74,31 @@ function getStandings(teams) {
     }
 }
 
+async function addFantasyTeam(event, teamForm) {
+    event.preventDefault();
+    const formData = new FormData(teamForm);
+    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
+    const response = await fetch('/api/teams',
+        {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: formJSON
+        });
+        if (!response.ok) { 
+            const errorMessage = await response.text();
+            createToast(errorMessage);
+            return;
+        }
+    const teams = await response.json();
+    document.getElementById("teamButtonDiv").innerHTML = "";
+    getStandings(teams);
+}
+
 function removeFantasyTeam() {
     document.getElementById("teamButtonDiv").innerHTML = "";
-    fetch("/api/team/remove", {
+    fetch("/api/teams", {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -81,6 +107,11 @@ function removeFantasyTeam() {
     .then(resp => resp.json())
     .then(teams => getStandings(teams));
 }
+
+
+
+
+
 
 function getSchedule(matches) {
     const cards = document.getElementById("matchCards")
@@ -156,6 +187,7 @@ function getSchedule(matches) {
     })
     const removeSelect = document.getElementById("removeSelect");
     const fantasyMatches = matches.filter(match => match.id[0] === "F");
+    removeSelect.innerHTML = ""
     for (let match of fantasyMatches) {
         removeSelect.innerHTML += `
         <option value="${match.id}">${match.away.name} @ ${match.home.name}</option>`
@@ -189,7 +221,11 @@ function vote(team, id) {
                 awayOdds.classList.remove("invert")
                 homeOdds.classList.remove("invert")
             }, 1000);
-            createToast(`You're backing the ${team}`);
+            if (team === match.away.id) {
+                createToast(`You're backing the ${match.away.name}`);
+            } else {
+                createToast(`You're backing the ${match.home.name}`);
+            }
         })
 }
 
@@ -224,27 +260,10 @@ document.getElementById("seeTheStandings").addEventListener("click", viewStandin
 document.getElementById("seeTheSchedule").addEventListener("click", viewSchedule);
 
 const teamForm = document.getElementById("fantasyTeamForm")
-teamForm.addEventListener("submit", async function(event) {
-    event.preventDefault();
-    const formData = new FormData(teamForm);
-    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    const response = await fetch('/api/team/add',
-        {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-              },
-            body: formJSON
-        });
-        if (!response.ok) { 
-            const errorMessage = await response.text();
-            createToast(errorMessage);
-            return;
-        }
-    const teams = await response.json();
-    document.getElementById("teamButtonDiv").innerHTML = "";
-    getStandings(teams);
+teamForm.addEventListener("submit", function(event) {
+    addFantasyTeam(event, teamForm);
 });
+
 
 const matchForm = document.getElementById("fantasyMatchForm")
 matchForm.addEventListener("submit", async function(event) {
