@@ -11,7 +11,6 @@ async function viewStandings() {
         createToast("Failed to load standings");
     }
 }
-
 async function viewSchedule() {
     document.getElementById("standings").style.display = "none";
     document.getElementById("home").style.display = "none";
@@ -25,7 +24,6 @@ async function viewSchedule() {
         createToast("Failed to load schedule");
     }
 }
-
 async function viewHome() {
     document.getElementById("standings").style.display = "none";
     document.getElementById("home").style.display = "block";
@@ -48,10 +46,6 @@ async function viewHome() {
         createToast("Failed to load home");
     }
 }
-
-
-
-
 
 function getStandings(teams) {
     let buttonText = "Add Your Fantasy Team";
@@ -84,51 +78,7 @@ function getStandings(teams) {
         <button class="btn btn-addTeam" type="button" data-bs-toggle="modal" data-bs-target="#teamModal">${buttonText}</button>`;
     }
 }
-
-async function addFantasyTeam(event, teamForm) {
-    event.preventDefault();
-    const formData = new FormData(teamForm);
-    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    try {
-        const response = await fetch('/api/teams', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-                },
-            body: formJSON
-        });
-        if (!response.ok && response.status === 400) {
-            const errorMessage = await response.text();
-            createToast(errorMessage);
-            return;
-        }
-        const teams = await response.json();
-        document.getElementById("teamButtonDiv").innerHTML = "";
-        getStandings(teams);
-    } catch (error) {
-        console.error(error);
-        createToast("Failed to add fantasy team");
-    }
-}
-
-function removeFantasyTeam() {
-    document.getElementById("teamButtonDiv").innerHTML = "";
-    fetch("/api/teams", {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(resp => resp.json())
-    .then(teams => getStandings(teams));
-}
-
-
-
-
-
-
-function getSchedule(matches) {
+async function getSchedule(matches) {
     const cards = document.getElementById("matchCards")
     cards.innerHTML = ""
     for (let match of matches) {
@@ -190,16 +140,14 @@ function getSchedule(matches) {
     const homeSelect = document.getElementById("homeSelect");
     awaySelect.innerHTML = ``
     homeSelect.innerHTML = ``
-    fetch("/api/teams")
-    .then(resp => resp.json())
-    .then(teams => {
-        for (let team of teams) {
-            awaySelect.innerHTML += `
-            <option value="${team.id}">${team.name}</option>`
-            homeSelect.innerHTML += `
-            <option value="${team.id}">${team.name}</option>`
-        }
-    })
+    const response = await fetch("/api/teams")
+    const teams = await response.json()
+    for (let team of teams) {
+        awaySelect.innerHTML += `
+        <option value="${team.id}">${team.name}</option>`
+        homeSelect.innerHTML += `
+        <option value="${team.id}">${team.name}</option>`
+    }
     const removeSelect = document.getElementById("removeSelect");
     const fantasyMatches = matches.filter(match => match.id[0] === "F");
     removeSelect.innerHTML = ""
@@ -209,84 +157,135 @@ function getSchedule(matches) {
     }
 }
 
-function vote(team, id) {
-    fetch("/api/vote", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id: id,
-            team: team
-        })
-    })
-        .then(resp => resp.json())
-        .then(match => {
-            document.getElementById(`awayBar${match.id}`).style.width = `${match.awayPercent}%`;
-            document.getElementById(`homeBar${match.id}`).style.width = `${match.homePercent}%`;
-            document.getElementById(`awayBar${match.id}`).innerHTML = `${match.awayVotes} votes`;
-            document.getElementById(`homeBar${match.id}`).innerHTML = `${match.homeVotes} votes`;
-            const awayOdds = document.getElementById(`awayOdds${match.id}`);
-            const homeOdds = document.getElementById(`homeOdds${match.id}`);
-            awayOdds.classList.add("invert");
-            homeOdds.classList.add("invert");
-            awayOdds.innerText = match.awayOdds.toFixed(2);
-            homeOdds.innerText = match.homeOdds.toFixed(2);
-            setTimeout(() => {
-                awayOdds.classList.remove("invert")
-                homeOdds.classList.remove("invert")
-            }, 1000);
-            if (team === match.away.id) {
-                createToast(`You're backing the ${match.away.name}`);
-            } else {
-                createToast(`You're backing the ${match.home.name}`);
-            }
-        })
-}
 
+async function addFantasyTeam(event, teamForm) {
+    event.preventDefault();
+    const formData = new FormData(teamForm);
+    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
+    try {
+        const response = await fetch('/api/teams', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+                },
+            body: formJSON
+        });
+        if (!response.ok && response.status === 400) {
+            const errorMessage = await response.text();
+            createToast(errorMessage);
+            return;
+        }
+        const teams = await response.json();
+        document.getElementById("teamButtonDiv").innerHTML = "";
+        getStandings(teams);
+    } catch (error) {
+        console.error(error);
+        createToast("Failed to add fantasy team");
+    }
+}
 async function addFantasyMatch(event, matchForm) {
     event.preventDefault();
     const formData = new FormData(matchForm);
     const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    console.log(formJSON)
-    const response = await fetch('/api/matches',
-        {
-            method: 'POST',
+    try {
+        const response = await fetch('/api/matches',
+            {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                  },
+                body: formJSON
+            });
+        const matches = await response.json();
+        getSchedule(matches);
+    } catch (error) {
+        console.error(error);
+        createToast("Failed to add fantasy match");
+    }
+}
+async function removeFantasyTeam() {
+    try {
+        const response = await fetch("/api/teams", {
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
-              },
-            body: formJSON
-        });
-        if (!response.ok) { 
+            }
+        })
+        if (!response.ok && response.status === 400) {
             const errorMessage = await response.text();
             createToast(errorMessage);
             return;
         }
-    const matches = await response.json();
-    getSchedule(matches);
+        const teams = await response.json();
+        document.getElementById("teamButtonDiv").innerHTML = "";
+        getStandings(teams)
+    } catch (error) {
+        console.error(error);
+        createToast("Failed to remove fantasy team");
+    }
 }
-
 async function removeFantasyMatch(event, removeForm) {
     event.preventDefault();
     const formData = new FormData(removeForm);
     const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    const response = await fetch('/api/matches',
-        {
-            method: 'DELETE',
-            headers: {
-                "Content-Type": "application/json"
-              },
-            body: formJSON
-        });
-        if (!response.ok) { 
+    try {
+        const response = await fetch('/api/matches',
+            {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json"
+                  },
+                body: formJSON
+            });
+        if (!response.ok && response.status === 400) {
             const errorMessage = await response.text();
             createToast(errorMessage);
             return;
         }
-    const matches = await response.json();
-    getSchedule(matches);
+        const matches = await response.json();
+        getSchedule(matches);
+    } catch (error) {
+        console.error(error);
+        createToast("Failed to remove fantasy match");
+    }
 }
-
+async function vote(team, id) {
+    try {
+        const response = await fetch("/api/vote", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: id,
+                team: team
+            })
+        });
+        const match = await response.json();
+        document.getElementById(`awayBar${match.id}`).style.width = `${match.awayPercent}%`;
+        document.getElementById(`homeBar${match.id}`).style.width = `${match.homePercent}%`;
+        document.getElementById(`awayBar${match.id}`).innerHTML = `${match.awayVotes} votes`;
+        document.getElementById(`homeBar${match.id}`).innerHTML = `${match.homeVotes} votes`;
+        const awayOdds = document.getElementById(`awayOdds${match.id}`);
+        const homeOdds = document.getElementById(`homeOdds${match.id}`);
+        awayOdds.classList.add("invert");
+        homeOdds.classList.add("invert");
+        awayOdds.innerText = match.awayOdds.toFixed(2);
+        homeOdds.innerText = match.homeOdds.toFixed(2);
+        setTimeout(() => {
+            awayOdds.classList.remove("invert")
+            homeOdds.classList.remove("invert")
+        }, 1000);
+        if (team === match.away.id) {
+            createToast(`You're backing the ${match.away.name}`);
+        } else {
+            createToast(`You're backing the ${match.home.name}`);
+        }
+    } catch (error) {
+        console.error(error);
+        createToast("Failed to vote");
+    }
+}
 
 function createToast(message) {
     const container = document.getElementById('toastContainer');
