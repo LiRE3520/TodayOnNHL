@@ -116,19 +116,15 @@ app.post("/api/matches", function(req,resp){
         id: "F" + (maxFantasyMatch + 1),
         away: {
             id: req.body.away,
-            name: teams.find(team => team.id === req.body.away).name
+            name: teams.find(team => team.id === req.body.away).name,
+            votes: 100 - parseInt(req.body.odds)
         },
         home: {
             id: req.body.home,
-            name: teams.find(team => team.id === req.body.home).name
+            name: teams.find(team => team.id === req.body.home).name,
+            votes: parseInt(req.body.odds)
         },
         date: req.body.datetime + ":00",
-        awayVotes: -1,
-        homeVotes: -1,
-        awayPercent: 100 - parseInt(req.body.odds),
-        homePercent: parseInt(req.body.odds),
-        homeOdds: 100 / parseInt(req.body.odds),
-        awayOdds: 100 / (100 - parseInt(req.body.odds)),
     }
     matches.push(match);
     matches.sort((a, b) => new Date(a.date) - new Date(b.date));
