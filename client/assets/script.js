@@ -8,7 +8,7 @@ async function viewStandings() {
         getStandings(teams);
     } catch (error) {
         console.error(error);
-        createToast("Failed to load standings");
+        createToast("Network Error: Failed to load standings");
     }
 }
 async function viewSchedule() {
@@ -21,7 +21,7 @@ async function viewSchedule() {
         getSchedule(matches);
     } catch (error) {
         console.error(error);
-        createToast("Failed to load schedule");
+        createToast("Network Error: Failed to load schedule");
     }
 }
 async function viewHome() {
@@ -43,7 +43,7 @@ async function viewHome() {
         <img src="assets/logos/${match.home.id}.svg" class="img-fluid" height=190 width=190>`
     } catch (error) {
         console.error(error);
-        createToast("Failed to load home");
+        createToast("Network Error: Failed to load home");
     }
 }
 
@@ -72,10 +72,10 @@ function getStandings(teams) {
     const buttonDiv = document.getElementById("teamButtonDiv");
     if (buttonText === "Remove Your Fantasy Team") {
         buttonDiv.innerHTML = `
-        <button class="btn btn-addTeam" type="button" onclick="removeFantasyTeam()">${buttonText}</button>`;
+        <button class="btn page-btn" type="button" onclick="removeFantasyTeam()">${buttonText}</button>`;
     } else {
         buttonDiv.innerHTML = `
-        <button class="btn btn-addTeam" type="button" data-bs-toggle="modal" data-bs-target="#teamModal">${buttonText}</button>`;
+        <button class="btn page-btn" type="button" data-bs-toggle="modal" data-bs-target="#teamModal">${buttonText}</button>`;
     }
 }
 async function getSchedule(matches) {
@@ -87,17 +87,17 @@ async function getSchedule(matches) {
         let cardContent = `<div class="card-body">`
         if (match.id[0] === "F") {
             cardContent += `
-            <h5 class="card-title fantasy">FANTASY</h5>
+            <h5 class="card-title fantasy-header">FANTASY</h5>
             <div class="d-flex justify-content-around align-items-center">
-            <img src="assets/logos/${match.away.id}.svg" class="img-fluid img-vote" style="max-width: 100px;">
+            <img src="assets/logos/${match.away.id}.svg" class="img-fluid vote-img" style="max-width: 100px;">
             <h5 class="card-title">${match.away.name} @ ${match.home.name}</h5>
-            <img src="assets/logos/${match.home.id}.svg" class="img-fluid img-vote" style="max-width: 100px;">`
+            <img src="assets/logos/${match.home.id}.svg" class="img-fluid vote-img" style="max-width: 100px;">`
         } else {
             cardContent += `
             <div class="d-flex justify-content-around align-items-center">
-            <img src="assets/logos/${match.away.id}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.away.id}', '${match.id}')">
+            <img src="assets/logos/${match.away.id}.svg" class="img-fluid vote-img" style="max-width: 100px;" onclick="vote('${match.away.id}', '${match.id}')">
             <h5 class="card-title">${match.away.name} @ ${match.home.name}</h5>
-            <img src="assets/logos/${match.home.id}.svg" class="img-fluid img-vote" style="max-width: 100px;" onclick="vote('${match.home.id}', '${match.id}')">`
+            <img src="assets/logos/${match.home.id}.svg" class="img-fluid vote-img" style="max-width: 100px;" onclick="vote('${match.home.id}', '${match.id}')">`
         }
         cardContent += `
             </div>
@@ -184,7 +184,7 @@ async function addFantasyTeam(event, teamForm) {
         getStandings(teams);
     } catch (error) {
         console.error(error);
-        createToast("Failed to add fantasy team");
+        createToast("Network Error: Failed to add fantasy team");
     }
 }
 async function addFantasyMatch(event, matchForm) {
@@ -204,7 +204,7 @@ async function addFantasyMatch(event, matchForm) {
         getSchedule(matches);
     } catch (error) {
         console.error(error);
-        createToast("Failed to add fantasy match");
+        createToast("Network Error: Failed to add fantasy match");
     }
 }
 async function removeFantasyTeam() {
@@ -225,7 +225,7 @@ async function removeFantasyTeam() {
         getStandings(teams)
     } catch (error) {
         console.error(error);
-        createToast("Failed to remove fantasy team");
+        createToast("Network Error: Failed to remove fantasy team");
     }
 }
 async function removeFantasyMatch(event, removeForm) {
@@ -250,7 +250,7 @@ async function removeFantasyMatch(event, removeForm) {
         getSchedule(matches);
     } catch (error) {
         console.error(error);
-        createToast("Failed to remove fantasy match");
+        createToast("Network Error: Failed to remove fantasy match");
     }
 }
 async function vote(team, id) {
@@ -320,7 +320,7 @@ async function vote(team, id) {
         localStorage.setItem("votedMatches", JSON.stringify(votedMatches));
     } catch (error) {
         console.error(error);
-        createToast("Failed to vote");
+        createToast("Network Error: Failed to vote");
     }
 }
 

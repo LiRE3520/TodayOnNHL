@@ -177,22 +177,6 @@ app.get("/api/schedule", function(req,resp){
     resp.send(matches)
 })
 
-app.post("/api/vote", function(req,resp){
-    let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
-    let match = matches.find(match => match.id === req.body.id);
-    if (req.body.team === match.away.id) {
-        match.awayVotes++;
-    } else {
-        match.homeVotes++;
-    }
-    match.awayPercent = Math.round(match.awayVotes / (match.awayVotes + match.homeVotes) * 100)
-    match.homePercent = Math.round(match.homeVotes / (match.awayVotes + match.homeVotes) * 100)
-    match.awayOdds = 100 / match.awayPercent;
-    match.homeOdds = 100 / match.homePercent;
-    fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
-    resp.send(match)
-})
-
 app.listen(8090, () => {
     console.log("Server running at: http://localhost:8090")
 })

@@ -9,7 +9,7 @@
     "home": {
       "id": "WSH",
       "name": "Washington Capitals",
-      "votes": 141
+      "votes": 142
     },
     "date": "2024-12-31T17:30:00"
   },
@@ -68,5 +68,23 @@
       "votes": 4
     },
     "date": "2025-01-01T01:00:00"
+  },
+  {
+    "id": "F1",
+    "away": {
+      "id": "WPG",
+      "name": "Winnipeg Jets"
+    },
+    "home": {
+      "id": "VGK",
+      "name": "Vegas Golden Knights"
+    },
+    "date": "2025-01-12T21:25:00",
+    "awayVotes": -1,
+    "homeVotes": -1,
+    "awayPercent": 34,
+    "homePercent": 66,
+    "homeOdds": 1.5151515151515151,
+    "awayOdds": 2.9411764705882355
   }
 ]

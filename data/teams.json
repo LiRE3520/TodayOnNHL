@@ -144,16 +144,8 @@
     "points": 39
   },
   {
-    "id": "FAN",
-    "position": 19,
-    "logo": "assets/logos/FAN.svg",
-    "name": "Bournemouth",
-    "gamesPlayed": 35,
-    "points": 38
-  },
-  {
     "id": "UTA",
-    "position": 20,
+    "position": 19,
     "logo": "assets/logos/UTA.svg",
     "name": "Utah Hockey Club",
     "gamesPlayed": 36,
@@ -161,7 +153,7 @@
   },
   {
     "id": "STL",
-    "position": 21,
+    "position": 20,
     "logo": "assets/logos/STL.svg",
     "name": "St. Louis Blues",
     "gamesPlayed": 38,
@@ -169,7 +161,7 @@
   },
   {
     "id": "CBJ",
-    "position": 22,
+    "position": 21,
     "logo": "assets/logos/CBJ.svg",
     "name": "Columbus Blue Jackets",
     "gamesPlayed": 37,
@@ -177,7 +169,7 @@
   },
   {
     "id": "PHI",
-    "position": 23,
+    "position": 22,
     "logo": "assets/logos/PHI.svg",
     "name": "Philadelphia Flyers",
     "gamesPlayed": 37,
@@ -185,7 +177,7 @@
   },
   {
     "id": "SEA",
-    "position": 24,
+    "position": 23,
     "logo": "assets/logos/SEA.svg",
     "name": "Seattle Kraken",
     "gamesPlayed": 38,
@@ -193,7 +185,7 @@
   },
   {
     "id": "MTL",
-    "position": 25,
+    "position": 24,
     "logo": "assets/logos/MTL.svg",
     "name": "Montreal Canadiens",
     "gamesPlayed": 36,
@@ -201,7 +193,7 @@
   },
   {
     "id": "NYI",
-    "position": 26,
+    "position": 25,
     "logo": "assets/logos/NYI.svg",
     "name": "New York Islanders",
     "gamesPlayed": 37,
@@ -209,7 +201,7 @@
   },
   {
     "id": "NYR",
-    "position": 27,
+    "position": 26,
     "logo": "assets/logos/NYR.svg",
     "name": "New York Rangers",
     "gamesPlayed": 36,
@@ -217,7 +209,7 @@
   },
   {
     "id": "ANA",
-    "position": 28,
+    "position": 27,
     "logo": "assets/logos/ANA.svg",
     "name": "Anaheim Ducks",
     "gamesPlayed": 35,
@@ -225,7 +217,7 @@
   },
   {
     "id": "DET",
-    "position": 29,
+    "position": 28,
     "logo": "assets/logos/DET.svg",
     "name": "Detroit Red Wings",
     "gamesPlayed": 36,
@@ -233,7 +225,7 @@
   },
   {
     "id": "BUF",
-    "position": 30,
+    "position": 29,
     "logo": "assets/logos/BUF.svg",
     "name": "Buffalo Sabres",
     "gamesPlayed": 37,
@@ -241,7 +233,7 @@
   },
   {
     "id": "NSH",
-    "position": 31,
+    "position": 30,
     "logo": "assets/logos/NSH.svg",
     "name": "Nashville Predators",
     "gamesPlayed": 37,
@@ -249,7 +241,7 @@
   },
   {
     "id": "SJS",
-    "position": 32,
+    "position": 31,
     "logo": "assets/logos/SJS.svg",
     "name": "San Jose Sharks",
     "gamesPlayed": 39,
@@ -257,7 +249,7 @@
   },
   {
     "id": "CHI",
-    "position": 33,
+    "position": 32,
     "logo": "assets/logos/CHI.svg",
     "name": "Chicago Blackhawks",
     "gamesPlayed": 37,

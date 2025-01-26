@@ -1,13 +1,8 @@
-.navbar {
+.navbar {   /* Navbar background colour */
     background-color:#9a1a1a;
 }
 
-.navbar span:hover {
-    color: #ffffff;
-    text-decoration: none;  
-}
-
-.navbar .navbar-brand {
+.navbar-brand { /*Navbar title formatting */
     font-family: Impact;
     color: #ffffff;
     text-decoration: none;
@@ -16,78 +11,78 @@
     user-select: none;
 }
 
-.navbar-toggler {
+.navbar-brand:hover { /*Navbar title hover colour */
+    color: #ffffff;
+}
+
+.navbar-toggler { /* Navbar hamburger button border */
     border-color: #ffffff;
 }
 
-.navbar-toggler:focus {
-    box-shadow: 0 0 0 0.25rem #ffffff80;
+.navbar-toggler:focus { /* Navbar hamburger button border when clicked */
+    box-shadow: 0 0 0 4px #ffffff80;
 }
 
-.navbar-nav .btn {
-    color: #ffffff;
+.navbar-btn { /*Navbar standings/schedule buttons formatting*/
     font-size: 32px;
     font-family: Impact;
-    text-decoration: none;
     margin-right: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
+    border: none;
 }
 
-.navbar-nav a:hover {
+.navbar-btn:hover { /*Navbar standings/schedule buttons hover colour*/
     color: #9a1a1a;
-    text-decoration: none;
 }
 
-.navbar-nav .btn:active {
+.navbar-nav .navbar-btn:active { /*Navbar standings/schedule buttons colour when being clicked*/
     color: #ffffff;
-    text-decoration: none;
 }
 
-.navbar .flag {
+.navbar-flag { /*Navbar flag formatting*/
     width: 85px;
     height: 85px;
     padding-left: 10px;
     user-select: none;
 }
 
-.table {
+.page-btn { /*Main button formatting*/
+    background-color: #9a1a1a;
+    color: white;
+    font-size: 20px;
+    border: 2px solid ;
+    border-radius: 5px;
+}
+
+.page-btn:hover { /*Invert main button colours when hovering*/
+    background-color: white;
+    color: #9a1a1a;
+    border: 2px solid ;
+    border-radius: 5px;
+}
+
+.home-img { /*Home page image padding*/
+    padding-top: 24px;
+}
+
+.table { /*Standings table font size*/
     font-size: 24px;
 }
 
-.img-home {
-    text-align: left;
-    padding-top: 1rem;
-}
-
-.progress-bar-left {
-    background-color: #9a1a1a;
-}
-
-.progress-bar-right {
-    background-color: #1f1fa2;
-}
-
-.btn {
-    border: none;
-}
-
-.btn-vote {
-    background-color: white;
-    color: black;
-    font-size: 16px;
-}
-
-.btn-vote:hover {
-    background-color: #9a1a1a;
-    color: white;
-}
-
-.img-vote {
+.vote-img { /*Cursor on team images for voting*/
     cursor: pointer;
 }
 
-.odds-display {
+.progress-bar-left { /*Away side of votes bar colour*/
+    background-color: #9a1a1a;
+}
+
+.progress-bar-right { /*Home side of votes bar colour*/
+    background-color: #1f1fa2;
+}
+
+.odds-display { /*Odds display box formatting*/
     display: inline-block;
     padding: 10px 20px;
     background-color: white;
@@ -101,33 +96,18 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.odds-display:hover {
+.odds-display:hover { /*Invert colours when hovering over odds display box*/
     background-color: #9a1a1a;
     color: white;
 }
 
-.odds-display.invert {
-    background-color: #9a1a1a !important;
-    color: white !important;
+.odds-display.invert { /*Invert colours when a vote is made*/
+    background-color: #9a1a1a;
+    color: white;
     transition: background-color 0.3s, color 0.3s;
 }
 
-.btn-addTeam {
-    background-color: #9a1a1a;
-    color: white;
-    font-size: 20px;
-    border: 2px solid ;
-    border-radius: 5px;
-}
-
-.btn-addTeam:hover {
-    background-color: white;
-    color: #9a1a1a;
-    border: 2px solid ;
-    border-radius: 5px;
-}
-
-.card-title.fantasy {
+.fantasy-header { /*Fantasy match header formatting*/
     font-weight: bold;
     color: #9a1a1a;
 }

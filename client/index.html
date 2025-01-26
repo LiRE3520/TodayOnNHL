@@ -22,8 +22,8 @@
         <div class="container-fluid">
             <div class="d-flex" id="goToHome">
                 <span class="navbar-brand">TodayOnNHL</span>
-                <img src = "assets/flags/USA.svg" alt="USA" class="flag">
-                <img src = "assets/flags/Canada.svg" alt="Canada" class="flag">
+                <img src = "assets/flags/USA.svg" alt="USA" class="navbar-flag">
+                <img src = "assets/flags/Canada.svg" alt="Canada" class="navbar-flag">
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDrop">
@@ -32,8 +32,8 @@
             
             <div class="collapse navbar-collapse" id="navbarDrop">
                 <ul class="navbar-nav ms-auto">
-                    <a class="btn btn-outline-light" id="showStandings">Standings</a>
-                    <a class="btn btn-outline-light" id="showSchedule">Schedule</a>
+                    <a class="btn btn-outline-light navbar-btn" id="showStandings">Standings</a>
+                    <a class="btn btn-outline-light navbar-btn" id="showSchedule">Schedule</a>
                 </ul>
             </div>
         </div>
@@ -49,22 +49,22 @@
                     <div class="col-md-6 col-sm-12">
                         <h1 class="display-5 fw-bold" id="topTeamName"></h1>
                         <p class="col-md-8 fs-4">Top Team Today</p>
-                        <button class="btn btn-danger btn-lg" type="button" style="background-color: #9a1a1a" id="seeTheStandings">See the standings</button>
+                        <button class="btn page-btn" type="button" id="seeTheStandings">See the standings</button>
                     </div>
-                    <div class="col-md-6 img-home" id="topTeamLogo">
+                    <div class="col-md-6 home-img" id="topTeamLogo">
                     </div>
                 </div>
             </div>
         </div>
         <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
-                <div class="row align-items-center img-home">
+                <div class="row align-items-center home-img">
                     <div class="col-md-6 col-sm-12">
                         <h1 class="display-5 fw-bold" id="nextMatchTeams"></h1>
                         <p class="col-md-8 fs-4">Next Game Up</p>
-                        <button class="btn btn-danger btn-lg" type="button" style="background-color: #9a1a1a" id="seeTheSchedule">See the schedule</button>
+                        <button class="btn page-btn" type="button" id="seeTheSchedule">See the schedule</button>
                     </div>
-                    <div class="col-md-6 img-home" id="nextMatchLogos">
+                    <div class="col-md-6 home-img" id="nextMatchLogos">
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                             <input type="text" class="form-control" name="teamPoints" aria-describedby="inputGroup-sizing-lg">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-addTeam" id="addFantasyTeam">Save changes</button>
+                            <button type="submit" class="btn page-btn" id="addFantasyTeam">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -123,7 +123,7 @@
         </div>
         <div id="matchCards"></div>
         <div class="d-grid gap-2 my-3 mx-3">
-            <button class="btn btn-addTeam" type="button" data-bs-toggle="modal" data-bs-target="#addMatchModal">Add A Fantasy Match</button>
+            <button class="btn page-btn" type="button" data-bs-toggle="modal" data-bs-target="#addMatchModal">Add A Fantasy Match</button>
         </div>
         <div class="modal fade" id="addMatchModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -160,7 +160,7 @@
                             <div class="p-2">Home</div>
                           </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-addTeam" id="addFantasyTeam">Save changes</button>
+                            <button type="submit" class="btn page-btn" id="addFantasyTeam">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -168,7 +168,7 @@
             </div>
         </div>
         <div class="d-grid gap-2 my-3 mx-3">
-            <button class="btn btn-addTeam" id="removeFantasyMatch" type="button" data-bs-toggle="modal" data-bs-target="#removeMatchModal">Remove A Fantasy Match</button>
+            <button class="btn page-btn" id="removeFantasyMatch" type="button" data-bs-toggle="modal" data-bs-target="#removeMatchModal">Remove A Fantasy Match</button>
         </div>
         <div class="modal fade" id="removeMatchModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -184,7 +184,7 @@
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-addTeam" id="addFantasyTeam">Save changes</button>
+                            <button type="submit" class="btn page-btn" id="addFantasyTeam">Save changes</button>
                         </div>
                     </form>
                 </div>
