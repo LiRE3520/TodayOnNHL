@@ -121,8 +121,10 @@
             <h1 class="display-5 fw-bold">Which teams will you back?</h1>
         </div>
         <div id="matchCards"></div>
-        <div class="d-grid gap-2 my-3 mx-3" id="matchButtonDiv"></div>
-        <div class="modal fade" id="matchModal" tabindex="-1" aria-hidden="true">
+        <div class="d-grid gap-2 my-3 mx-3">
+            <button class="btn btn-addTeam" type="button" data-bs-toggle="modal" data-bs-target="#addMatchModal">Add A Fantasy Match</button>
+        </div>
+        <div class="modal fade" id="addMatchModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -132,13 +134,19 @@
                 <div class="modal-body">
                     <form id="fantasyMatchForm" method="post">
                         <div class="input-group input-group-lg my-3">
-                            <select class="form-select" id="awaySelect" name="away" aria-label="Default select example">
-                            </select>
+                            <div class="d-flex flex-column">
+                                <label for="awaySelect" class="form-label">Away Team</label>
+                                <select class="form-select" id="awaySelect" name="away" aria-label="Default select example">
+                                </select>
+                            </div>
                         </div>
                         <div class="input-group input-group-lg my-3">
-                            <select class="form-select" id="homeSelect" name="home" aria-label="Default select example">
-                            </select>
-                        </div>
+                            <div class="d-flex flex-column">
+                                <label for="homeSelect" class="form-label">Home Team</label>
+                                <select class="form-select" id="homeSelect" name="home" aria-label="Default select example">
+                                </select>
+                            </div>
+                        </div>                        
                         <div class="input-group input-group-lg my-3">
                             <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
                         </div>
@@ -150,6 +158,30 @@
                             <div class="me-auto p-2">Away</div>
                             <div class="p-2">Home</div>
                           </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-addTeam" id="addFantasyTeam">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="d-grid gap-2 my-3 mx-3">
+            <button class="btn btn-addTeam" id="removeFantasyMatch" type="button" data-bs-toggle="modal" data-bs-target="#removeMatchModal">Remove A Fantasy Match</button>
+        </div>
+        <div class="modal fade" id="removeMatchModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Remove A Fantasy Match</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="removeMatchForm" method="post">
+                        <div class="input-group input-group-lg my-3">
+                            <select class="form-select" id="removeSelect" name="match" aria-label="Default select example">
+                            </select>
+                        </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-addTeam" id="addFantasyTeam">Save changes</button>
                         </div>

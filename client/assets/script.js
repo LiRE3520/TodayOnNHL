@@ -145,19 +145,23 @@ function getSchedule(matches) {
             odds.innerHTML = oddsContent;
             cards.appendChild(odds);
         }
-        buttonDiv = document.getElementById("matchButtonDiv");
-        buttonDiv.innerHTML = `<button class="btn btn-addTeam" type="button" data-bs-toggle="modal" data-bs-target="#matchModal">Add A Fantasy Match</button>`
         const awaySelect = document.getElementById("awaySelect");
-        awaySelect.innerHTML = `
-        <option selected>Away Team</option>`
         const homeSelect = document.getElementById("homeSelect");
-        homeSelect.innerHTML = `
-        <option selected>Home Team</option>`
+        awaySelect.innerHTML = ``
+        homeSelect.innerHTML = ``
         for (let team of teams) {
             awaySelect.innerHTML += `
             <option value="${team.id}">${team.name}</option>`
             homeSelect.innerHTML += `
             <option value="${team.id}">${team.name}</option>`
+        }
+        const removeSelect = document.getElementById("removeSelect");
+        const fantasyMatches = matches.filter(match => match.id[0] === "F");
+        for (let match of fantasyMatches) {
+            awayName = teams.find(team => team.id === match.away).name;
+            homeName = teams.find(team => team.id === match.home).name;
+            removeSelect.innerHTML += `
+            <option value="${match.id}">${awayName} @ ${homeName}</option>`
         }
     })
 }
@@ -266,6 +270,27 @@ matchForm.addEventListener("submit", async function(event) {
             return;
         }
     const matches = await response.json();
-    document.getElementById("matchButtonDiv").innerHTML = "";
     getSchedule(matches);
 }); 
+
+const removeForm = document.getElementById("removeMatchForm")
+removeForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const formData = new FormData(removeForm);
+    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
+    const response = await fetch('/api/matches',
+        {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: formJSON
+        });
+        if (!response.ok) { 
+            const errorMessage = await response.text();
+            createToast(errorMessage);
+            return;
+        }
+    const matches = await response.json();
+    getSchedule(matches);
+});

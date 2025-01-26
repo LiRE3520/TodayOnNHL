@@ -99,15 +99,26 @@ app.post("/api/matches", function(req,resp){
         date: req.body.datetime + ":00",
         awayVotes: -1,
         homeVotes: -1,
-        awayPercent: parseInt(req.body.odds),
-        homePercent: 100 - parseInt(req.body.odds),
-        homeOdds: 100 / (100 - parseInt(req.body.odds)),
-        awayOdds: 100 / parseInt(req.body.odds),
+        awayPercent: 100 - parseInt(req.body.odds),
+        homePercent: parseInt(req.body.odds),
+        homeOdds: 100 / parseInt(req.body.odds),
+        awayOdds: 100 / (100 - parseInt(req.body.odds)),
     }
     matches.push(match);
     matches.sort((a, b) => new Date(a.date) - new Date(b.date));
     fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
     resp.send(matches)
+})
+
+app.delete("/api/matches", function(req,resp){
+    let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
+    let newMatches = matches.filter(match => match.id !== req.body.match);
+    if (JSON.stringify(newMatches) === JSON.stringify(matches)) {
+        resp.status(400).send("Match not found!");
+        return
+    }
+    fs.writeFileSync('./data/matches.json', JSON.stringify(newMatches, null, 2));
+    resp.send(newMatches)
 })
 
 app.get("/api/teams", function(req,resp){
