@@ -1,41 +1,52 @@
-function viewStandings() {
+async function viewStandings() {
     document.getElementById("standings").style.display = "block";
     document.getElementById("home").style.display = "none";
     document.getElementById("schedule").style.display = "none";
-    fetch("/api/standings")
-        .then(resp => resp.json())
-        .then(teams => getStandings(teams));
+    try {
+        const response = await fetch("/api/standings");
+        const teams = await response.json();
+        getStandings(teams);
+    } catch (error) {
+        console.error(error);
+        createToast("Failed to load standings");
+    }
 }
 
-function viewSchedule() {
+async function viewSchedule() {
     document.getElementById("standings").style.display = "none";
     document.getElementById("home").style.display = "none";
     document.getElementById("schedule").style.display = "block";
-    fetch("/api/schedule")
-    .then(resp => resp.json())
-    .then(matches => getSchedule(matches));
+    try {
+        const response = await fetch("/api/schedule");
+        const matches = await response.json();
+        getSchedule(matches);
+    } catch (error) {
+        console.error(error);
+        createToast("Failed to load schedule");
+    }
 }
 
-function viewHome() {
+async function viewHome() {
     document.getElementById("standings").style.display = "none";
     document.getElementById("home").style.display = "block";
     document.getElementById("schedule").style.display = "none";
-    fetch("/api/teams?position=1")
-    .then(resp => resp.json())
-    .then(team => {
+    try {
+        let response = await fetch("/api/teams?position=1")
+        const team = await response.json()
         document.getElementById("topTeamName").innerHTML = team.name;
         document.getElementById("topTeamLogo").innerHTML = `
         <img src="${team.logo}" class="img-fluid" height=190 width=190>`
-    });
-    fetch("/api/matches?next=true")
-    .then(resp => resp.json())
-    .then(match => {
+        response = await fetch("/api/matches?next=true")
+        const match = await response.json()
         document.getElementById("nextMatchTeams").innerHTML = `
         ${match.away.name} @ ${match.home.name}`;
         document.getElementById("nextMatchLogos").innerHTML = `
         <img src="assets/logos/${match.away.id}.svg" class="img-fluid" height=190 width=190>
-        <img src="assets/logos/${match.home.id}.svg" class="img-fluid" height=190 width=190>`;
-    })
+        <img src="assets/logos/${match.home.id}.svg" class="img-fluid" height=190 width=190>`
+    } catch (error) {
+        console.error(error);
+        createToast("Failed to load home");
+    }
 }
 
 
@@ -78,22 +89,26 @@ async function addFantasyTeam(event, teamForm) {
     event.preventDefault();
     const formData = new FormData(teamForm);
     const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    const response = await fetch('/api/teams',
-        {
+    try {
+        const response = await fetch('/api/teams', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
-              },
+                },
             body: formJSON
         });
-        if (!response.ok) { 
+        if (!response.ok && response.status === 400) {
             const errorMessage = await response.text();
             createToast(errorMessage);
             return;
         }
-    const teams = await response.json();
-    document.getElementById("teamButtonDiv").innerHTML = "";
-    getStandings(teams);
+        const teams = await response.json();
+        document.getElementById("teamButtonDiv").innerHTML = "";
+        getStandings(teams);
+    } catch (error) {
+        console.error(error);
+        createToast("Failed to add fantasy team");
+    }
 }
 
 function removeFantasyTeam() {
@@ -229,6 +244,50 @@ function vote(team, id) {
         })
 }
 
+async function addFantasyMatch(event, matchForm) {
+    event.preventDefault();
+    const formData = new FormData(matchForm);
+    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
+    console.log(formJSON)
+    const response = await fetch('/api/matches',
+        {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: formJSON
+        });
+        if (!response.ok) { 
+            const errorMessage = await response.text();
+            createToast(errorMessage);
+            return;
+        }
+    const matches = await response.json();
+    getSchedule(matches);
+}
+
+async function removeFantasyMatch(event, removeForm) {
+    event.preventDefault();
+    const formData = new FormData(removeForm);
+    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
+    const response = await fetch('/api/matches',
+        {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: formJSON
+        });
+        if (!response.ok) { 
+            const errorMessage = await response.text();
+            createToast(errorMessage);
+            return;
+        }
+    const matches = await response.json();
+    getSchedule(matches);
+}
+
+
 function createToast(message) {
     const container = document.getElementById('toastContainer');
     const newToast = document.createElement('div');
@@ -264,48 +323,12 @@ teamForm.addEventListener("submit", function(event) {
     addFantasyTeam(event, teamForm);
 });
 
-
 const matchForm = document.getElementById("fantasyMatchForm")
-matchForm.addEventListener("submit", async function(event) {
-    event.preventDefault();
-    const formData = new FormData(matchForm);
-    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    console.log(formJSON)
-    const response = await fetch('/api/matches',
-        {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-              },
-            body: formJSON
-        });
-        if (!response.ok) { 
-            const errorMessage = await response.text();
-            createToast(errorMessage);
-            return;
-        }
-    const matches = await response.json();
-    getSchedule(matches);
+matchForm.addEventListener("submit", function(event) {
+    addFantasyMatch(event, matchForm);
 }); 
 
 const removeForm = document.getElementById("removeMatchForm")
-removeForm.addEventListener("submit", async function(event) {
-    event.preventDefault();
-    const formData = new FormData(removeForm);
-    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    const response = await fetch('/api/matches',
-        {
-            method: 'DELETE',
-            headers: {
-                "Content-Type": "application/json"
-              },
-            body: formJSON
-        });
-        if (!response.ok) { 
-            const errorMessage = await response.text();
-            createToast(errorMessage);
-            return;
-        }
-    const matches = await response.json();
-    getSchedule(matches);
+removeForm.addEventListener("submit", function(event) {
+    removeFantasyMatch(event, removeForm);
 });
