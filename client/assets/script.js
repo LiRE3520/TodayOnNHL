@@ -161,7 +161,6 @@ async function getSchedule(matches) {
     }
 }
 
-
 async function addFantasyTeam(event, teamForm) {
     event.preventDefault();
     const formData = new FormData(teamForm);
@@ -188,27 +187,6 @@ async function addFantasyTeam(event, teamForm) {
         createToast("Network Error: Failed to add fantasy team");
     }
 }
-async function addFantasyMatch(event, matchForm) {
-    event.preventDefault();
-    const formData = new FormData(matchForm);
-    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    try {
-        const response = await fetch('/api/matches',
-            {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                  },
-                body: formJSON
-            });
-        const matches = await response.json();
-        bootstrap.Modal.getInstance(document.getElementById('addFantasyMatchModal')).hide()
-        getSchedule(matches);
-    } catch (error) {
-        console.error(error);
-        createToast("Network Error: Failed to add fantasy match");
-    }
-}
 async function removeFantasyTeam() {
     try {
         const response = await fetch("/api/teams", {
@@ -228,6 +206,27 @@ async function removeFantasyTeam() {
     } catch (error) {
         console.error(error);
         createToast("Network Error: Failed to remove fantasy team");
+    }
+}
+async function addFantasyMatch(event, matchForm) {
+    event.preventDefault();
+    const formData = new FormData(matchForm);
+    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
+    try {
+        const response = await fetch('/api/matches',
+            {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                  },
+                body: formJSON
+            });
+        const matches = await response.json();
+        bootstrap.Modal.getInstance(document.getElementById('addFantasyMatchModal')).hide()
+        getSchedule(matches);
+    } catch (error) {
+        console.error(error);
+        createToast("Network Error: Failed to add fantasy match");
     }
 }
 async function removeFantasyMatch(event, removeForm) {

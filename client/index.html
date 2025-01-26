@@ -99,7 +99,7 @@
                             <input type="text" class="form-control" name="points" aria-describedby="inputGroup-sizing-lg">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn page-btn" id="addFantasyTeam">Save changes</button>
+                            <button type="submit" class="btn page-btn">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -127,14 +127,14 @@
                         <div class="input-group input-group-lg my-3">
                             <div class="d-flex flex-column">
                                 <label for="awaySelect" class="form-label">Away Team</label>
-                                <select class="form-select" id="awaySelect" name="away" aria-label="Default select example">
+                                <select class="form-select" id="awaySelect" name="away">
                                 </select>
                             </div>
                         </div>
                         <div class="input-group input-group-lg my-3">
                             <div class="d-flex flex-column">
                                 <label for="homeSelect" class="form-label">Home Team</label>
-                                <select class="form-select" id="homeSelect" name="home" aria-label="Default select example">
+                                <select class="form-select" id="homeSelect" name="home">
                                 </select>
                             </div>
                         </div>                        
@@ -150,7 +150,7 @@
                             <div class="p-2">Home</div>
                           </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn page-btn" id="addFantasyTeam">Save changes</button>
+                            <button type="submit" class="btn page-btn">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -169,12 +169,15 @@
                 </div>
                 <div class="modal-body">
                     <form id="removeMatchForm" method="post">
-                        <div class="input-group input-group-lg my-3">
-                            <select class="form-select" id="removeSelect" name="match" aria-label="Default select example">
-                            </select>
+                        <div class="d-flex flex-column input-group input-group-lg my-3">
+                            <div class="d-flex flex-column">
+                                <label for="removeSelect" class="form-label">Select the match to delete</label>
+                                <select class="form-select" id="removeSelect" name="match">
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn page-btn" id="addFantasyTeam">Save changes</button>
+                            <button type="submit" class="btn page-btn">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -182,13 +185,11 @@
             </div>
         </div>
     </section>
-
     <footer class="bg-dark text-white text-center py-3 mt-auto">
         <div class="container">
             <p class="mb-0">© 2025 TodayOnNHL. All rights reserved.</p>
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
