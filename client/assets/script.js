@@ -1,10 +1,10 @@
 async function viewStandings() {
-    document.getElementById("standings").style.display = "block";
-    document.getElementById("home").style.display = "none";
-    document.getElementById("schedule").style.display = "none";
     try {
         const response = await fetch("/api/standings");
         const teams = await response.json();
+        document.getElementById("standings").style.display = "block";
+        document.getElementById("home").style.display = "none";
+        document.getElementById("schedule").style.display = "none";
         getStandings(teams);
     } catch (error) {
         console.error(error);
@@ -12,12 +12,12 @@ async function viewStandings() {
     }
 }
 async function viewSchedule() {
-    document.getElementById("standings").style.display = "none";
-    document.getElementById("home").style.display = "none";
-    document.getElementById("schedule").style.display = "block";
     try {
         const response = await fetch("/api/schedule");
         const matches = await response.json();
+        document.getElementById("standings").style.display = "none";
+        document.getElementById("home").style.display = "none";
+        document.getElementById("schedule").style.display = "block";
         getSchedule(matches);
     } catch (error) {
         console.error(error);
@@ -25,12 +25,12 @@ async function viewSchedule() {
     }
 }
 async function viewHome() {
-    document.getElementById("standings").style.display = "none";
-    document.getElementById("home").style.display = "block";
-    document.getElementById("schedule").style.display = "none";
     try {
         let response = await fetch("/api/teams?position=1")
         const team = await response.json()
+        document.getElementById("standings").style.display = "none";
+        document.getElementById("home").style.display = "block";
+        document.getElementById("schedule").style.display = "none";
         document.getElementById("topTeamName").innerHTML = team.name;
         document.getElementById("topTeamLogo").innerHTML = `
         <img src="${team.logo}" class="img-fluid" height=190 width=190>`
