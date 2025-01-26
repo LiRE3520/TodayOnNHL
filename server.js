@@ -123,11 +123,58 @@ app.delete("/api/matches", function(req,resp){
 
 app.get("/api/teams", function(req,resp){
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
+    if (req.query.id) {
+        let team = teams.find(team => team.id === req.query.id);
+        if (!team) {
+            resp.status(400).send("No team with this ID!");
+            return
+        }
+        resp.send(team)
+        return
+    }
+    if (req.query.position) {
+        let team = teams.find(team => team.position === parseInt(req.query.position));
+        if (!team) {
+            resp.status(400).send("No team at this position!");
+            return
+        }
+        resp.send(team)
+        return
+    }
     let teamList = teams.map(team => ({
         id: team.id,
         name: team.name
     }));
     resp.send(teamList)
+})
+
+app.get("/api/matches", function(req,resp){
+    let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
+    if (req.query.id) {
+        let match = matches.find(match => match.id === req.query.id);
+        if (!match) {
+            resp.status(400).send("No match with this ID!");
+            return
+        }
+        resp.send(match)
+        return
+    }
+    if (req.query.next && req.query.next === "true") {
+        let match = matches[0]
+        if (!match) {
+            resp.status(400).send("No upcoming match!");
+            return
+        }
+        resp.send(match)
+        return
+    }
+    let matchList = matches.map(match => ({
+        id: match.id,
+        away: match.away,
+        home: match.home,
+        date: match.date
+    }));
+    resp.send(matchList)
 })
 
 app.listen(8090, () => {

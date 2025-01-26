@@ -1,8 +1,14 @@
 [
   {
     "id": "1188",
-    "away": "BOS",
-    "home": "WSH",
+    "away": {
+      "id": "BOS",
+      "name": "Boston Bruins"
+    },
+    "home": {
+      "id": "WSH",
+      "name": "Washington Capitals"
+    },
     "date": "2024-12-31T17:30:00",
     "awayVotes": 104,
     "homeVotes": 109,
@@ -13,8 +19,14 @@
   },
   {
     "id": "1189",
-    "away": "NYI",
-    "home": "TOR",
+    "away": {
+      "id": "NYI",
+      "name": "New York Islanders"
+    },
+    "home": {
+      "id": "TOR",
+      "name": "Toronto Maple Leafs"
+    },
     "date": "2024-12-31T18:00:00",
     "awayVotes": 13,
     "homeVotes": 18,
@@ -25,8 +37,14 @@
   },
   {
     "id": "1190",
-    "away": "MTL",
-    "home": "VGK",
+    "away": {
+      "id": "MTL",
+      "name": "Montreal Canadiens"
+    },
+    "home": {
+      "id": "VGK",
+      "name": "Vegas Golden Knights"
+    },
     "date": "2024-12-31T20:00:00",
     "awayVotes": 18,
     "homeVotes": 6,
@@ -37,8 +55,14 @@
   },
   {
     "id": "1191",
-    "away": "STL",
-    "home": "CHI",
+    "away": {
+      "id": "STL",
+      "name": "St. Louis Blues"
+    },
+    "home": {
+      "id": "CHI",
+      "name": "Chicago Blackhawks"
+    },
     "date": "2024-12-31T22:00:00",
     "awayVotes": 3,
     "homeVotes": 10,
@@ -49,8 +73,14 @@
   },
   {
     "id": "1192",
-    "away": "PIT",
-    "home": "DET",
+    "away": {
+      "id": "PIT",
+      "name": "Pittsburgh Penguins"
+    },
+    "home": {
+      "id": "DET",
+      "name": "Detroit Red Wings"
+    },
     "date": "2025-01-01T01:00:00",
     "awayVotes": 2,
     "homeVotes": 3,
