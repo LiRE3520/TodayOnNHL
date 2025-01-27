@@ -24,7 +24,7 @@ app.get("/api/teams", function(req,resp){
     if (req.query.id) {
         let team = teams.find(team => team.id === req.query.id);
         if (!team) {
-            resp.status(400).send("No team with this ID!");
+            resp.status(404).send("No team with this ID!");
             return
         }
         resp.send(team)
@@ -33,7 +33,7 @@ app.get("/api/teams", function(req,resp){
     if (req.query.position) {
         let team = teams.find(team => team.position === parseInt(req.query.position));
         if (!team) {
-            resp.status(400).send("No team at this position!");
+            resp.status(404).send("No team at this position!");
             return
         }
         resp.send(team)
@@ -64,18 +64,22 @@ app.post("/api/teams", function(req,resp){
         teams.push(team);
         teams = sortTeams(teams);
         fs.writeFileSync('./data/teams.json', JSON.stringify(teams, null, 2));
-        resp.send(teams)
+        resp.status(200).send(teams)
     } else {
         resp.status(400).send("Invalid team!");
     }
 })
 
-app.delete("/api/teams", function(req,resp){
+app.delete("/api/teams/:id", function(req,resp){
+    if (req.params.id != "FAN") {
+        resp.status(403).send("You can only delete your fantasy team!");
+        return
+    }
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'))
     teams = teams.filter(team => team.id !== "FAN");
     teams = sortTeams(teams); 
     fs.writeFileSync('./data/teams.json', JSON.stringify(teams, null, 2))
-    resp.send(teams)
+    resp.status(200).send(teams)
 })
 
 app.get("/api/matches", function(req,resp){
@@ -83,16 +87,7 @@ app.get("/api/matches", function(req,resp){
     if (req.query.id) {
         let match = matches.find(match => match.id === req.query.id);
         if (!match) {
-            resp.status(400).send("No match with this ID!");
-            return
-        }
-        resp.send(match)
-        return
-    }
-    if (req.query.next && req.query.next === "true") {
-        let match = matches[0]
-        if (!match) {
-            resp.status(400).send("No upcoming match!");
+            resp.status(404).send("No match with this ID!");
             return
         }
         resp.send(match)
@@ -105,6 +100,16 @@ app.get("/api/matches", function(req,resp){
         date: match.date
     }));
     resp.send(matchList)
+})
+
+app.get("/api/matches/next", function(req,resp){
+    let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
+    let match = matches[0]
+    if (!match) {
+        resp.status(404).send("No upcoming match!");
+        return
+    }
+    resp.send(match)
 })
 
 app.post("/api/matches", function(req,resp){
@@ -133,28 +138,34 @@ app.post("/api/matches", function(req,resp){
     matches.push(match);
     matches.sort((a, b) => new Date(a.date) - new Date(b.date));
     fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
-    resp.send(matches)
+    resp.status(200).send(matches)
 })
 
-app.delete("/api/matches", function(req,resp){
+app.delete("/api/matches/:id", function(req,resp){
     let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
-    let newMatches = matches.filter(match => match.id !== req.body.match);
+    let newMatches = matches.filter(match => match.id.trim() !== req.params.id.trim());
+    console.log("req.params.id:", req.params.id, "Type:", typeof req.params.id);
+    console.log("match.id:", matches[5].id, "Type:", typeof matches[5].id);
     if (JSON.stringify(newMatches) === JSON.stringify(matches)) {
-        resp.status(400).send("Match not found!");
+        resp.status(404).send("Match not found!");
         return
     }
     fs.writeFileSync('./data/matches.json', JSON.stringify(newMatches, null, 2));
-    resp.send(newMatches)
+    resp.status(200).send(newMatches)
 })
 
-app.patch("/api/matches/:id", function(req,resp){
+app.patch("/api/matches/:id/vote", function(req,resp){
     let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
     let match = matches.find(match => match.id === req.params.id);
     if (!match) {
-        resp.status(400).send("Match not found!");
+        resp.status(404).send("Match not found!");
         return
     } else if (match.id[0] === "F") {
-        resp.status(400).send("You cannot vote on a fantasy match!");
+        resp.status(403).send("You cannot vote on a fantasy match!");
+        return
+    }
+    if (req.body.vote !== 1 && req.body.vote !== -1) {
+        resp.status(400).send("Invalid vote!");
         return
     }
     if (match.away.id === req.body.team) {
@@ -163,7 +174,7 @@ app.patch("/api/matches/:id", function(req,resp){
         match.home.votes += req.body.vote
     }
     fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
-    resp.send(match)
+    resp.status(200).send(match)
 })
 
 app.get("/api/standings", function(req,resp){

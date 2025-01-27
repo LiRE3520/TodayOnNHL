@@ -34,7 +34,7 @@ async function viewHome() {
         document.getElementById("topTeamHeader").innerHTML = team.name;
         document.getElementById("topTeamLogo").innerHTML = `
         <img src="${team.logo}" class="img-fluid" height=190 width=190>`
-        response = await fetch("/api/matches?next=true")
+        response = await fetch("/api/matches/next")
         const match = await response.json()
         document.getElementById("nextMatchHeader").innerHTML = `
         ${match.away.name} @ ${match.home.name}`;
@@ -189,17 +189,12 @@ async function addFantasyTeam(event, teamForm) {
 }
 async function removeFantasyTeam() {
     try {
-        const response = await fetch("/api/teams", {
+        const response = await fetch("/api/teams/FAN", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             }
         })
-        if (!response.ok && response.status === 400) {
-            const errorMessage = await response.text();
-            createToast(errorMessage);
-            return;
-        }
         const teams = await response.json();
         document.getElementById("fantasyTeamButtonDiv").innerHTML = "";
         getStandings(teams)
@@ -232,17 +227,16 @@ async function addFantasyMatch(event, matchForm) {
 async function removeFantasyMatch(event, removeForm) {
     event.preventDefault();
     const formData = new FormData(removeForm);
-    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
+    const matchID = formData.get("match")
     try {
-        const response = await fetch('/api/matches',
+        const response = await fetch(`/api/matches/${matchID}`,
             {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json"
                   },
-                body: formJSON
             });
-        if (!response.ok && response.status === 400) {
+        if (!response.ok && response.status === 404) {
             const errorMessage = await response.text();
             createToast(errorMessage);
             return;
@@ -263,7 +257,7 @@ async function vote(team, id) {
         return;
     }
     try {
-        let response = await fetch(`/api/matches/${id}`, {
+        let response = await fetch(`/api/matches/${id}/vote`, {
             method: "PATCH",
             headers:{
                 "Content-Type": "application/json"
@@ -274,7 +268,7 @@ async function vote(team, id) {
             })
         });
         if (hasVoted) {
-            response = await fetch(`/api/matches/${id}`, {
+            response = await fetch(`/api/matches/${id}/vote`, {
                 method: "PATCH",
                 headers:{
                     "Content-Type": "application/json"

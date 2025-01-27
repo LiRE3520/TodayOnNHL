@@ -4,12 +4,12 @@
     "away": {
       "id": "BOS",
       "name": "Boston Bruins",
-      "votes": 116
+      "votes": 118
     },
     "home": {
       "id": "WSH",
       "name": "Washington Capitals",
-      "votes": 142
+      "votes": 143
     },
     "date": "2024-12-31T17:30:00"
   },
@@ -18,12 +18,12 @@
     "away": {
       "id": "NYI",
       "name": "New York Islanders",
-      "votes": 17
+      "votes": 18
     },
     "home": {
       "id": "TOR",
       "name": "Toronto Maple Leafs",
-      "votes": 22
+      "votes": 25
     },
     "date": "2024-12-31T18:00:00"
   },
@@ -51,7 +51,7 @@
     "home": {
       "id": "CHI",
       "name": "Chicago Blackhawks",
-      "votes": 11
+      "votes": 12
     },
     "date": "2024-12-31T22:00:00"
   },
