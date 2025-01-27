@@ -95,8 +95,8 @@ app.get("/api/matches", function(req,resp){
     }
     let matchList = matches.map(match => ({
         id: match.id,
-        away: match.away,
-        home: match.home,
+        away: match.away.id,
+        home: match.home.id,
         date: match.date
     }));
     resp.send(matchList)
@@ -186,6 +186,6 @@ app.get("/api/schedule", function(req,resp){
     resp.send(matches)
 })
 
-app.listen(8090, '10.247.157.33', () => {
+app.listen(8090, () => {
     console.log("Server running at: http://10.247.157.33:8090")
 })
