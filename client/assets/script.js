@@ -8,7 +8,7 @@ async function viewStandings() {
         getStandings(teams);
     } catch (error) {
         console.error(error);
-        createToast("Network Error: Failed to load standings");
+        createToast("Network Error: Failed to load standing");
     }
 }
 async function viewSchedule() {

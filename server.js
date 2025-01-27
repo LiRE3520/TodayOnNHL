@@ -144,8 +144,6 @@ app.post("/api/matches", function(req,resp){
 app.delete("/api/matches/:id", function(req,resp){
     let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
     let newMatches = matches.filter(match => match.id.trim() !== req.params.id.trim());
-    console.log("req.params.id:", req.params.id, "Type:", typeof req.params.id);
-    console.log("match.id:", matches[5].id, "Type:", typeof matches[5].id);
     if (JSON.stringify(newMatches) === JSON.stringify(matches)) {
         resp.status(404).send("Match not found!");
         return
