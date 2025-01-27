@@ -9,7 +9,7 @@
     "home": {
       "id": "WSH",
       "name": "Washington Capitals",
-      "votes": 143
+      "votes": 144
     },
     "date": "2024-12-31T17:30:00"
   },
@@ -37,7 +37,7 @@
     "home": {
       "id": "VGK",
       "name": "Vegas Golden Knights",
-      "votes": 5
+      "votes": 6
     },
     "date": "2024-12-31T20:00:00"
   },
@@ -46,7 +46,7 @@
     "away": {
       "id": "STL",
       "name": "St. Louis Blues",
-      "votes": 3
+      "votes": 4
     },
     "home": {
       "id": "CHI",
@@ -65,7 +65,7 @@
     "home": {
       "id": "DET",
       "name": "Detroit Red Wings",
-      "votes": 12
+      "votes": 13
     },
     "date": "2025-01-01T01:00:00"
   }
