@@ -52,18 +52,22 @@ app.post("/api/teams", function(req,resp){
         resp.status(400).send("You have already added your fantasy team!");
         return;
     }
-    let team = {
-        id: "FAN",
-        position: -1,
-        logo: "assets/logos/FAN.svg",
-        name: req.body.name,
-        gamesPlayed: parseInt(req.body.gamesPlayed),
-        points: parseInt(req.body.points),
+    if (req.body.name.length > 0 && parseInt(req.body.gamesPlayed) && parseInt(req.body.gamesPlayed) > -1 && parseInt(req.body.points) && parseInt(req.body.points) > -1) {
+        let team = {
+            id: "FAN",
+            position: -1,
+            logo: "assets/logos/FAN.svg",
+            name: req.body.name,
+            gamesPlayed: parseInt(req.body.gamesPlayed),
+            points: parseInt(req.body.points),
+        }
+        teams.push(team);
+        teams = sortTeams(teams);
+        fs.writeFileSync('./data/teams.json', JSON.stringify(teams, null, 2));
+        resp.send(teams)
+    } else {
+        resp.status(400).send("Invalid team!");
     }
-    teams.push(team);
-    teams = sortTeams(teams);
-    fs.writeFileSync('./data/teams.json', JSON.stringify(teams, null, 2));
-    resp.send(teams)
 })
 
 app.delete("/api/teams", function(req,resp){

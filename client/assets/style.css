@@ -10,7 +10,7 @@
     box-shadow: 0 0 0 0.25rem #ffffff80;
 }
 
-.navbar-btn { /*Navbar standings/schedule buttons formatting*/
+.navbar-btn { /*Navbar home/standings/schedule buttons formatting*/
     font-size: 1.75rem;
     font-family: 'Anton', sans-serif;
     margin-right: 0.625rem;
@@ -19,11 +19,11 @@
     border: none;
 }
 
-.navbar-btn:hover { /*Navbar standings/schedule buttons hover colour*/
+.navbar-btn:hover { /*Navbar home/standings/schedule buttons hover colour*/
     color: #9a1a1a;
 }
 
-.navbar-nav .navbar-btn:active { /*Navbar standings/schedule buttons colour when being clicked*/
+.navbar .navbar-btn:active { /*Navbar home/standings/schedule buttons colour when being clicked*/
     color: #ffffff;
 }
 
