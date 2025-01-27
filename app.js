@@ -49,10 +49,10 @@ app.get("/api/teams", function(req,resp){
 app.post("/api/teams", function(req,resp){
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8'));
     if (teams.find(team => team.id === "FAN")) {
-        resp.status(400).send("You have already added your fantasy team!");
+        resp.status(403).send("You have already added your fantasy team!");
         return;
     }
-    if (req.body.name.length > 0 && parseInt(req.body.gamesPlayed) && parseInt(req.body.gamesPlayed) > -1 && parseInt(req.body.points) && parseInt(req.body.points) > -1) {
+    if (req.body.name && req.body.gamesPlayed && req.body.points && req.body.name.length > 0 && parseInt(req.body.gamesPlayed) && parseInt(req.body.gamesPlayed) > -1 && parseInt(req.body.points) && parseInt(req.body.points) > -1) {
         let team = {
             id: "FAN",
             position: -1,
@@ -121,29 +121,37 @@ app.post("/api/matches", function(req,resp){
     } else {
         maxFantasyMatch = 0;
     }
-    let match = {
-        id: "F" + (maxFantasyMatch + 1),
-        away: {
-            id: req.body.away,
-            name: teams.find(team => team.id === req.body.away).name,
-            votes: 100 - parseInt(req.body.odds)
-        },
-        home: {
-            id: req.body.home,
-            name: teams.find(team => team.id === req.body.home).name,
-            votes: parseInt(req.body.odds)
-        },
-        date: req.body.datetime + ":00",
+    if (req.body.away && req.body.home && req.body.odds && req.body.datetime && teams.find(team => team.id === req.body.away) && teams.find(team => team.id === req.body.home) && parseInt(req.body.odds) && parseInt(req.body.odds) > 0 && parseInt(req.body.odds) < 100 && !isNaN(new Date(req.body.datetime).getTime())) {
+        let match = {
+            id: "F" + (maxFantasyMatch + 1),
+            away: {
+                id: req.body.away,
+                name: teams.find(team => team.id === req.body.away).name,
+                votes: 100 - parseInt(req.body.odds)
+            },
+            home: {
+                id: req.body.home,
+                name: teams.find(team => team.id === req.body.home).name,
+                votes: parseInt(req.body.odds)
+            },
+            date: req.body.datetime + ":00",
+        }
+        matches.push(match);
+        matches.sort((a, b) => new Date(a.date) - new Date(b.date));
+        fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
+        resp.status(200).send(matches)
+    } else {
+        resp.status(400).send("Invalid match!");
     }
-    matches.push(match);
-    matches.sort((a, b) => new Date(a.date) - new Date(b.date));
-    fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
-    resp.status(200).send(matches)
 })
 
 app.delete("/api/matches/:id", function(req,resp){
     let matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8'));
-    let newMatches = matches.filter(match => match.id.trim() !== req.params.id.trim());
+    if (matches.find(match => match.id === req.params.id) && req.params.id[0] !== "F") {
+        resp.status(403).send("You can only delete a fantasy matches!");
+        return
+    }
+    let newMatches = matches.filter(match => match.id !== req.params.id);
     if (JSON.stringify(newMatches) === JSON.stringify(matches)) {
         resp.status(404).send("Match not found!");
         return
@@ -168,8 +176,11 @@ app.patch("/api/matches/:id/vote", function(req,resp){
     }
     if (match.away.id === req.body.team) {
         match.away.votes += req.body.vote
-    } else {
+    } else if (match.home.id === req.body.team) {
         match.home.votes += req.body.vote
+    } else {
+        resp.status(400).send("Invalid team!");
+        return
     }
     fs.writeFileSync('./data/matches.json', JSON.stringify(matches, null, 2));
     resp.status(200).send(match)

@@ -173,7 +173,7 @@ async function addFantasyTeam(event, teamForm) {
                 },
             body: formJSON
         });
-        if (!response.ok && response.status === 400) {
+        if (!response.ok && (response.status === 403) || (response.status === 400)) {
             const errorMessage = await response.text();
             createToast(errorMessage);
             return;

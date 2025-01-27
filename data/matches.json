@@ -51,7 +51,7 @@
     "home": {
       "id": "CHI",
       "name": "Chicago Blackhawks",
-      "votes": 12
+      "votes": 16
     },
     "date": "2024-12-31T22:00:00"
   },
@@ -65,7 +65,7 @@
     "home": {
       "id": "DET",
       "name": "Detroit Red Wings",
-      "votes": 4
+      "votes": 12
     },
     "date": "2025-01-01T01:00:00"
   }
