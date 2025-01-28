@@ -32,12 +32,12 @@
     "away": {
       "id": "MTL",
       "name": "Montreal Canadiens",
-      "votes": 1
+      "votes": 2
     },
     "home": {
       "id": "VGK",
       "name": "Vegas Golden Knights",
-      "votes": 6
+      "votes": 5
     },
     "date": "2024-12-31T20:00:00"
   },

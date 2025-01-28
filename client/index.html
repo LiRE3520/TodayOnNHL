@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"> <!-- credit bootstrap -->
+    <link rel="icon" href="assets/icons/favicon.ico"> 
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"> <!-- import Anton font -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- import hamburger menu icon -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/style.css">
+    crossorigin="anonymous"> <!-- bootstrap css cdn -->
+    <link rel="stylesheet" href="assets/style.css"> <!-- custom css -->
     <title>TodayOnNHL</title>
 </head>
 <body>
@@ -21,10 +22,10 @@
                 <img src = "assets/flags/USA.svg" alt="USA" class="navbar-flag">
                 <img src = "assets/flags/Canada.svg" alt="Canada" class="navbar-flag">
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDrop">
-                <span class="bi bi-list text-white"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDrop"> <!-- bootstrap dropdown toggler -->
+                <span class="bi bi-list text-white"></span> <!-- hamburger menu icon added in bootstrap js -->
             </button>
-            <div class="collapse navbar-collapse" id="navbarDrop">
+            <div class="collapse navbar-collapse" id="navbarDrop"> <!-- bootstrap dropdown -->
                 <ul class="navbar-nav ms-auto">
                     <a class="btn btn-outline-light navbar-btn standings-btn">Standings</a>
                     <a class="btn btn-outline-light navbar-btn schedule-btn">Schedule</a>
@@ -32,12 +33,10 @@
             </div>
         </div>
     </nav>
-    <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 py-3 px-3">
-    </div>
     <section id="home">
-        <div class="px-4 py-5 my-5 text-center">
-            <img class="d-block mx-auto mb-4 home-img" id="topTeamLogo">
-            <h1 class="display-5 fw-bold text-body-emphasis" id="topTeamHeader"></h1>
+        <div class="px-4 py-5 my-5 text-center"> <!-- bootstrap hero -->
+            <img class="d-block mx-auto mb-4 home-img" id="topTeamLogo"> <!-- img src added in js-->
+            <h1 class="display-5 fw-bold text-body-emphasis" id="topTeamHeader"></h1> <!-- text added in js-->
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">Top Team Today</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
@@ -45,13 +44,12 @@
                 </div>
             </div>
         </div>
-        <div class="home-divider"></div>
-        <div class="px-4 py-5 my-5 text-center">
+        <div class="home-divider"></div> <!-- bootstrap divider -->
+        <div class="px-4 py-5 my-5 text-center"> <!-- bootstrap hero -->
             <div class="d-flex justify-content-center align-items-center">
-                <div class="d-flex justify-content-center" id="nextMatchLogos">
-                </div>
+                <div class="d-flex justify-content-center" id="nextMatchLogos"></div> <!-- imgs added in js -->
             </div>
-            <h1 class="display-5 fw-bold text-body-emphasis" id="nextMatchHeader"></h1>
+            <h1 class="display-5 fw-bold text-body-emphasis" id="nextMatchHeader"></h1> <!-- text added in js-->
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">Next Game Up</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
@@ -71,11 +69,10 @@
                     <th scope="col">Points</th>
                 </tr>
             </thead>
-            <tbody id="standingsTableBody">
-            </tbody>
+            <tbody id="standingsTableBody"></tbody> <!-- table rows added in js -->
         </table>
-        <div class="d-grid gap-2 my-3 mx-3" id="fantasyTeamButtonDiv"></div>
-        <div class="modal fade" id="fantasyTeamModal" tabindex="-1" aria-hidden="true">
+        <div class="d-grid gap-2 my-3 mx-3" id="fantasyTeamButtonDiv"></div> <!-- button text added in js -->
+        <div class="modal fade" id="fantasyTeamModal" tabindex="-1" aria-hidden="true"> <!-- bootstrap modal -->
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -83,7 +80,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="fantasyTeamForm" method="post">
+                    <form id="fantasyTeamForm" method="post"> <!-- form to add fantasy team -->
                         <div class="input-group input-group-lg my-3">
                             <span class="input-group-text" id="inputGroup-sizing-lg">Team Name</span>
                             <input type="text" class="form-control" name="name" aria-describedby="inputGroup-sizing-lg">
@@ -109,11 +106,11 @@
         <div class="d-flex justify-content-center my-3">
             <h1 class="display-5 fw-bold">Which teams will you back?</h1>
         </div>
-        <div id="matchCards"></div>
+        <div id="matchCards"></div> <!-- match cards added in js -->
         <div class="d-grid gap-2 my-3 mx-3">
             <button class="btn page-btn" type="button" data-bs-toggle="modal" data-bs-target="#addFantasyMatchModal">Add A Fantasy Match</button>
         </div>
-        <div class="modal fade" id="addFantasyMatchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="addFantasyMatchModal" tabindex="-1" aria-hidden="true"> <!-- bootstrap modal -->
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -121,19 +118,17 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="fantasyMatchForm" method="post">
+                    <form id="fantasyMatchForm" method="post"> <!-- form to add fantasy match -->
                         <div class="input-group input-group-lg my-3">
                             <div class="d-flex flex-column">
                                 <label for="awaySelect" class="form-label">Away Team</label>
-                                <select class="form-select" id="awaySelect" name="away">
-                                </select>
+                                <select class="form-select" id="awaySelect" name="away"></select> <!-- bootstrap select - options added in js -->
                             </div>
                         </div>
                         <div class="input-group input-group-lg my-3">
                             <div class="d-flex flex-column">
                                 <label for="homeSelect" class="form-label">Home Team</label>
-                                <select class="form-select" id="homeSelect" name="home">
-                                </select>
+                                <select class="form-select" id="homeSelect" name="home"></select> <!-- bootstrap select - options added in js -->
                             </div>
                         </div>                        
                         <div class="input-group input-group-lg my-3">
@@ -141,7 +136,7 @@
                         </div>
                         <div class="input-group input-group-lg my-3">
                             <label for="oddsRange" class="form-label">Who's likely to win?</label>
-                            <input type="range" class="form-range" name ="odds" min="0" max="100" step="1" id="oddsRange">
+                            <input type="range" class="form-range" name ="odds" min="0" max="100" step="1" id="oddsRange"> <!-- bootstrap range -->
                         </div>
                         <div class="d-flex mb-3">
                             <div class="me-auto p-2">Away</div>
@@ -158,7 +153,7 @@
         <div class="d-grid gap-2 my-3 mx-3">
             <button class="btn page-btn" type="button" data-bs-toggle="modal" data-bs-target="#removeFantasyMatchModal">Remove A Fantasy Match</button>
         </div>
-        <div class="modal fade" id="removeFantasyMatchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="removeFantasyMatchModal" tabindex="-1" aria-hidden="true"> <!-- bootstrap modal -->
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -166,12 +161,11 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="removeMatchForm" method="post">
+                    <form id="removeMatchForm" method="post"> <!-- form to remove fantasy match -->
                         <div class="d-flex flex-column input-group input-group-lg my-3">
                             <div class="d-flex flex-column">
                                 <label for="removeSelect" class="form-label">Select the match to delete</label>
-                                <select class="form-select" id="removeSelect" name="match">
-                                </select>
+                                <select class="form-select" id="removeSelect" name="match"></select> <!-- bootstrap select - options added in js -->
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -183,6 +177,7 @@
             </div>
         </div>
     </section>
+    <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 py-3 px-3"></div> <!-- bootstrap toast container - toasts added in js -->
     <footer class="bg-dark text-white text-center py-3 mt-auto">
         <div class="container">
             <p class="mb-0">© 2025 TodayOnNHL. All rights reserved.</p>
@@ -190,7 +185,7 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-    <script src="assets/script.js"></script>
+    crossorigin="anonymous"></script> <!-- bootstrap js cdn-->
+    <script src="assets/script.js"></script> <!-- custom js -->
 </body>
 </html>
