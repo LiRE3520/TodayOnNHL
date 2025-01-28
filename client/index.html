@@ -35,29 +35,27 @@
     <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 py-3 px-3">
     </div>
     <section id="home">
-        <div class="p-5 mb-4 bg-light rounded-3">
-            <div class="container-fluid py-5">
-                <div class="row align-items-center">
-                    <div class="col-md-6 col-sm-12">
-                        <h1 class="display-5 fw-bold" id="topTeamHeader"></h1>
-                        <p class="col-md-8 fs-4">Top Team Today</p>
-                        <button class="btn page-btn standings-btn" type="button">See the standings</button>
-                    </div>
-                    <div class="col-md-6 home-img" id="topTeamLogo">
-                    </div>
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4 home-img" id="topTeamLogo">
+            <h1 class="display-5 fw-bold text-body-emphasis" id="topTeamHeader"></h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Top Team Today</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="button" class="btn page-btn btn-lg px-4 gap-3 standings-btn">See the standings</button>
                 </div>
             </div>
         </div>
-        <div class="p-5 mb-4 bg-light rounded-3">
-            <div class="container-fluid py-5">
-                <div class="row align-items-center home-img">
-                    <div class="col-md-6 col-sm-12">
-                        <h1 class="display-5 fw-bold" id="nextMatchHeader"></h1>
-                        <p class="col-md-8 fs-4">Next Game Up</p>
-                        <button class="btn page-btn schedule-btn" type="button">See the schedule</button>
-                    </div>
-                    <div class="col-md-6 home-img" id="nextMatchLogos">
-                    </div>
+        <div class="home-divider"></div>
+        <div class="px-4 py-5 my-5 text-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="d-flex justify-content-center" id="nextMatchLogos">
+                </div>
+            </div>
+            <h1 class="display-5 fw-bold text-body-emphasis" id="nextMatchHeader"></h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Next Game Up</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="button" class="btn page-btn btn-lg px-4 gap-3 schedule-btn">See the schedule</button>
                 </div>
             </div>
         </div>

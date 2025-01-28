@@ -1,0 +1,5 @@
+{
+    "ext": "js,html,css",
+    "ignore": ["node_modules"],
+    "exec": "node server.js"
+  }

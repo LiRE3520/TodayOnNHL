@@ -32,15 +32,14 @@ async function viewHome() {
         document.getElementById("home").style.display = "block";
         document.getElementById("schedule").style.display = "none";
         document.getElementById("topTeamHeader").innerHTML = team.name;
-        document.getElementById("topTeamLogo").innerHTML = `
-        <img src="${team.logo}" class="img-fluid" height=190 width=190>`
+        document.getElementById("topTeamLogo").src = team.logo;
         response = await fetch("/api/matches/next")
         const match = await response.json()
         document.getElementById("nextMatchHeader").innerHTML = `
         ${match.away.name} @ ${match.home.name}`;
         document.getElementById("nextMatchLogos").innerHTML = `
-        <img src="assets/logos/${match.away.id}.svg" class="img-fluid" height=190 width=190>
-        <img src="assets/logos/${match.home.id}.svg" class="img-fluid" height=190 width=190>`
+        <img src="assets/logos/${match.away.id}.svg" class="d-block mx-auto mb-4 home-img">
+        <img src="assets/logos/${match.home.id}.svg" class="d-block mx-auto mb-4 home-img">`
     } catch (error) {
         console.error(error);
         createToast("Network Error: Failed to load home");
