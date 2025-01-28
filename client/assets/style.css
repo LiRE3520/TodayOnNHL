@@ -49,12 +49,20 @@
     border-radius: 0.3125rem;
 }
 
+h1 { /*Main header formatting*/
+    font-family: 'Anton', sans-serif;
+}
+
 .home-img { /*Home page image padding*/
     padding-top: 1.5rem;
 }
 
 .table { /*Standings table font size*/
     font-size: 1.2rem;
+}
+
+.table th { /*Standings table header font size*/
+    font-family: 'Anton', sans-serif;
 }
 
 .vote-img { /*Cursor on team images for voting*/
