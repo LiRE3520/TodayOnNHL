@@ -4,12 +4,12 @@
     "away": {
       "id": "PHI",
       "name": "Philadelphia Flyers",
-      "votes": 157
+      "votes": 158
     },
     "home": {
       "id": "NJD",
       "name": "New Jersey Devils",
-      "votes": 136
+      "votes": 139
     },
     "date": "2025-01-30T00:00:00"
   },
@@ -32,12 +32,12 @@
     "away": {
       "id": "LAK",
       "name": "Los Angeles Kings",
-      "votes": 6
+      "votes": 8
     },
     "home": {
       "id": "FLA",
       "name": "Florida Panthers",
-      "votes": 2
+      "votes": 3
     },
     "date": "2025-01-30T00:00:00"
   },
