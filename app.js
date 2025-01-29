@@ -161,9 +161,9 @@ app.delete('/api/matches/:id', function (req, resp) {
     resp.status(200).send(newMatches); // send updated matches
 });
 
-app.patch('/api/matches/:id/vote', function (req, resp) {
+app.patch('/api/matches/:matchID/vote', function (req, resp) {
     const matches = JSON.parse(fs.readFileSync('./data/matches.json', 'utf8')); // read matches data
-    const match = matches.find(match => match.id === req.params.id); // find match by id parameter
+    const match = matches.find(match => match.id === req.params.matchID); // find match by id parameter
     if (!match) {
         resp.status(404).send('Match not found!'); // send 404 if match not found
         return;
@@ -175,9 +175,9 @@ app.patch('/api/matches/:id/vote', function (req, resp) {
         resp.status(400).send('Invalid vote!'); // send 400 if invalid vote
         return;
     }
-    if (match.away.id === req.body.team) {
+    if (match.away.id === req.body.teamID) {
         match.away.votes += req.body.vote; // update away team votes
-    } else if (match.home.id === req.body.team) {
+    } else if (match.home.id === req.body.teamID) {
         match.home.votes += req.body.vote; // update home team votes
     } else {
         resp.status(400).send('Invalid team!'); // send 400 if invalid team
