@@ -255,8 +255,8 @@ async function removeFantasyMatch (event, removeForm) {
 
 async function vote (teamID, matchID) {
     const votedMatches = JSON.parse(localStorage.getItem('votedMatches')) || []; // get voted matches from local storage
-    const hasVoted = votedMatches.find(vote => vote.match.id === id); // check if user has already voted on this match
-    if (hasVoted && hasVoted.match.team === team) {
+    const hasVoted = votedMatches.find(vote => vote.match.matchID === matchID); // check if user has already voted on this match
+    if (hasVoted && hasVoted.match.teamID === teamID) {
         createToast("You're already backing this team!"); // show error toast if already voted for this team
         return;
     }
@@ -278,7 +278,7 @@ async function vote (teamID, matchID) {
                     'Content-Type': 'application/json' // set content type to JSON
                 },
                 body: JSON.stringify({
-                    team: hasVoted.match.team,
+                    teamID: hasVoted.match.teamID,
                     vote: -1 // set vote to -1
                 })
             });
@@ -302,18 +302,18 @@ async function vote (teamID, matchID) {
             awayOddsDisplay.classList.remove('invert'); // remove invert class from away odds display for transition effect
             homeOddsDisplay.classList.remove('invert'); // remove invert class from home odds display for transition effect
         }, 1000);
-        if (team === match.away.id) {
+        if (teamID === match.away.id) {
             createToast(`You're backing the ${match.away.name}!`); // show success toast for away team
         } else {
             createToast(`You're backing the ${match.home.name}!`); // show success toast for home team
         }
         if (hasVoted) {
-            hasVoted.match.team = team; // update voted team if already voted on this match
+            hasVoted.match.teamID = teamID; // update voted team if already voted on this match
         } else {
             votedMatches.push({
                 match: {
-                    id,
-                    team
+                    matchID,
+                    teamID
                 }
             }); // add new vote and match to voted matches if not already voted on this match
         }
