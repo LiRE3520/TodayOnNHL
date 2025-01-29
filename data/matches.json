@@ -46,7 +46,7 @@
     "away": {
       "id": "STL",
       "name": "St. Louis Blues",
-      "votes": 4
+      "votes": 5
     },
     "home": {
       "id": "CHI",
@@ -60,12 +60,12 @@
     "away": {
       "id": "PIT",
       "name": "Pittsburgh Penguins",
-      "votes": 5
+      "votes": 4
     },
     "home": {
       "id": "DET",
       "name": "Detroit Red Wings",
-      "votes": 13
+      "votes": 14
     },
     "date": "2025-01-01T01:00:00"
   }
