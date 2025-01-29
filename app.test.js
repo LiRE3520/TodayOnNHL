@@ -56,7 +56,7 @@ describe('Adding a fantasy team', () => {
         return request(app)
             .post('/api/teams')
             .send(body)
-            .expect(200);
+            .expect(201);
     });
     test('POST /api/teams -already have a fantasy team', () => {
         const body = {
@@ -67,7 +67,7 @@ describe('Adding a fantasy team', () => {
         return request(app)
             .post('/api/teams')
             .send(body)
-            .expect(403);
+            .expect(409);
     });
 });
 
@@ -124,7 +124,7 @@ describe('Adding a fantasy match', () => {
         return request(app)
             .post('/api/matches')
             .send(body)
-            .expect(200);
+            .expect(201);
     });
     test('POST /api/matches -invalid match data', () => {
         const body = {

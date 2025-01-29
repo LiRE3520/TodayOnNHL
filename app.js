@@ -49,7 +49,7 @@ app.get('/api/teams', function (req, resp) {
 app.post('/api/teams', function (req, resp) {
     let teams = JSON.parse(fs.readFileSync('./data/teams.json', 'utf8')); // read teams data
     if (teams.find(team => team.id === 'FAN')) {
-        resp.status(409).send('You have already added your fantasy team!'); // send 403 if fantasy team already exists
+        resp.status(409).send('You have already added your fantasy team!'); // send 409 if fantasy team already exists
         return;
     }
     if (req.body.name && req.body.gamesPlayed && req.body.points && req.body.name.length > 0 && parseInt(req.body.gamesPlayed) && parseInt(req.body.gamesPlayed) > -1 && parseInt(req.body.points) && parseInt(req.body.points) > -1) {
